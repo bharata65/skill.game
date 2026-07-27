@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Arena - Onboarding</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <div class="onboarding-container">
+        
+        <!-- Onboarding Slider -->
+        <div id="onboarding-screen" class="onboarding-screen">
+            <div class="slider-wrapper">
+                <div class="slider-container">
+                    
+                    <!-- Slide 1: Play Contests -->
+                    <div class="slider-slide active">
+                        <div class="slide-content">
+                            <div class="slide-illustration">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="100" cy="100" r="90" fill="#e8f5e9" stroke="#20c997" stroke-width="2"/>
+                                    <rect x="60" y="60" width="30" height="60" fill="#20c997" rx="4"/>
+                                    <rect x="110" y="70" width="30" height="50" fill="#20c997" rx="4"/>
+                                    <circle cx="75" cy="50" r="8" fill="#20c997"/>
+                                    <circle cx="125" cy="55" r="8" fill="#20c997"/>
+                                </svg>
+                            </div>
+                            <h2 class="slide-title">Play Contests</h2>
+                            <p class="slide-description">Solve puzzles and compete with thousands of players in real-time contests.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Find/Think/Win -->
+                    <div class="slider-slide">
+                        <div class="slide-content">
+                            <div class="slide-illustration">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="100" cy="100" r="90" fill="#e8f5e9" stroke="#20c997" stroke-width="2"/>
+                                    <path d="M 80 140 Q 100 120 120 140" stroke="#20c997" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                    <circle cx="85" cy="85" r="4" fill="#20c997"/>
+                                    <circle cx="115" cy="85" r="4" fill="#20c997"/>
+                                    <path d="M 70 100 L 130 100" stroke="#20c997" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h2 class="slide-title">Find, Think, Win</h2>
+                            <p class="slide-description">Find the right answers, think strategically, and win prizes every day.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Win Real Rewards -->
+                    <div class="slider-slide">
+                        <div class="slide-content">
+                            <div class="slide-illustration">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="100" cy="100" r="90" fill="#e8f5e9" stroke="#20c997" stroke-width="2"/>
+                                    <path d="M 100 60 L 110 85 L 135 85 L 115 100 L 125 125 L 100 110 L 75 125 L 85 100 L 65 85 L 90 85 Z" fill="#20c997"/>
+                                </svg>
+                            </div>
+                            <h2 class="slide-title">Win Real Rewards</h2>
+                            <p class="slide-description">Earn money, vouchers, and exclusive prizes based on your performance.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Slider Indicators -->
+                <div class="slider-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="slider-controls">
+                <button type="button" class="btn btn-secondary btn-full" id="prev-slide">Back</button>
+                <button type="button" class="btn btn-primary btn-full" id="next-slide">Next</button>
+            </div>
+        </div>
+
+        <!-- Notification Permission Screen -->
+        <div id="notification-screen" class="notification-screen hidden">
+            <div class="notification-content">
+                <div class="notification-icon">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 50 20 C 40 20 32 28 32 38 L 32 60 C 32 70 28 75 28 75 L 72 75 C 72 75 68 70 68 60 L 68 38 C 68 28 60 20 50 20 Z" fill="none" stroke="#20c997" stroke-width="2"/>
+                        <circle cx="50" cy="85" r="4" fill="#20c997"/>
+                        <path d="M 46 85 L 54 85" stroke="#20c997" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h2 class="notification-title">Stay Updated</h2>
+                <p class="notification-subtitle">Get timely notifications for new contests and your rankings</p>
+                
+                <div class="notification-benefits">
+                    <div class="benefit-item">
+                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Never miss a contest</span>
+                    </div>
+                    <div class="benefit-item">
+                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Get instant alerts for results</span>
+                    </div>
+                    <div class="benefit-item">
+                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Track your performance</span>
+                    </div>
+                </div>
+
+                <div class="notification-controls">
+                    <button type="button" class="btn btn-secondary btn-full" id="skip-notification">Maybe Later</button>
+                    <button type="button" class="btn btn-primary btn-full" id="enable-notification">Enable Notifications</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="../js/onboarding/onboarding-manager.js"></script>
+</body>
+</html>
