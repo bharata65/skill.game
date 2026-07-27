@@ -1,6 +1,20 @@
-.header{
+/* ===========================================
+   SKILL GAME
+   HOME PAGE
+   Version 1.0
+===========================================*/
 
-height:65px;
+.home{
+
+padding:18px;
+
+padding-bottom:95px;
+
+}
+
+/* Header */
+
+.home-header{
 
 display:flex;
 
@@ -8,88 +22,444 @@ justify-content:space-between;
 
 align-items:center;
 
-padding:0 20px;
-
-background:#ffffff;
-
-box-shadow:0 2px 8px rgba(0,0,0,.08);
-
-position:sticky;
-
-top:0;
+margin-bottom:22px;
 
 }
 
-.logo{
+.user-box{
 
-font-size:24px;
+display:flex;
 
-font-weight:bold;
+align-items:center;
 
-color:#0B66FF;
-
-}
-
-.balance{
-
-background:#E8F3FF;
-
-padding:8px 14px;
-
-border-radius:30px;
-
-font-weight:600;
+gap:14px;
 
 }
 
-.banner{
+.user-image{
 
-margin:20px;
+width:52px;
 
-height:180px;
+height:52px;
 
-border-radius:20px;
+border-radius:50%;
 
-background:#EEF5FF;
+overflow:hidden;
 
-}
+background:#F5F7FB;
 
-.section{
-
-padding:20px;
+box-shadow:var(--shadow);
 
 }
 
-.card{
-
-background:#fff;
-
-border-radius:20px;
-
-padding:18px;
-
-margin-bottom:18px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-}
-
-.join{
+.user-image img{
 
 width:100%;
 
-padding:14px;
+height:100%;
 
-border:none;
+object-fit:cover;
+
+}
+
+.user-name{
+
+font-size:20px;
+
+font-weight:700;
+
+}
+
+.user-id{
+
+font-size:13px;
+
+color:#888;
+
+margin-top:3px;
+
+}
+
+/* Notification */
+
+.notification{
+
+width:46px;
+
+height:46px;
+
+border-radius:50%;
+
+background:#F5F7FB;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:22px;
+
+position:relative;
+
+box-shadow:var(--shadow);
+
+}
+
+.notification::after{
+
+content:"";
+
+position:absolute;
+
+right:12px;
+
+top:10px;
+
+width:9px;
+
+height:9px;
+
+background:#FF4D4F;
+
+border-radius:50%;
+
+}
+
+/* Wallet */
+
+.wallet-home{
+
+background:linear-gradient(135deg,#0B66FF,#2B7DFF);
+
+border-radius:26px;
+
+padding:24px;
+
+color:white;
+
+margin-bottom:24px;
+
+box-shadow:0 18px 40px rgba(11,102,255,.25);
+
+}
+
+.wallet-home-title{
+
+font-size:15px;
+
+opacity:.95;
+
+}
+
+.wallet-home-balance{
+
+font-size:36px;
+
+font-weight:800;
+
+margin-top:8px;
+
+}
+
+.wallet-buttons{
+
+display:flex;
+
+gap:12px;
+
+margin-top:22px;
+
+}
+
+.wallet-buttons button{
+
+flex:1;
+
+height:48px;
+
+border-radius:15px;
+
+background:white;
+
+color:#0B66FF;
+
+font-weight:700;
+
+}
+
+/* Banner */
+
+.slider{
+
+margin-bottom:22px;
+
+}
+
+.banner-card{
+
+height:185px;
+
+border-radius:24px;
+
+overflow:hidden;
+
+background:#EEF5FF;
+
+box-shadow:var(--shadow);
+
+}
+
+.banner-card img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+/* Section */
+
+.home-section{
+
+margin-top:28px;
+
+}
+
+.home-title{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:16px;
+
+}
+
+.home-title h2{
+
+font-size:22px;
+
+font-weight:800;
+
+}
+
+.home-title a{
+
+font-size:15px;
+
+color:#0B66FF;
+
+font-weight:700;
+
+}
+
+/* Contest */
+
+.contest-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.contest-item{
+
+background:white;
+
+border-radius:24px;
+
+padding:20px;
+
+box-shadow:var(--shadow);
+
+}
+
+.contest-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:16px;
+
+}
+
+.contest-name{
+
+font-size:18px;
+
+font-weight:700;
+
+}
+
+.live-badge{
+
+background:#EAFBF3;
+
+padding:7px 14px;
+
+border-radius:20px;
+
+font-size:12px;
+
+font-weight:700;
+
+color:#12C48B;
+
+}
+
+.prize{
+
+font-size:30px;
+
+font-weight:800;
+
+color:#0B66FF;
+
+margin-top:10px;
+
+}
+
+.entry{
+
+margin-top:6px;
+
+font-size:15px;
+
+color:#666;
+
+}
+
+.players{
+
+margin-top:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:14px;
+
+font-weight:700;
+
+}
+
+.progress-bar{
+
+margin-top:12px;
+
+height:9px;
+
+background:#ECECEC;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+.progress-bar span{
+
+display:block;
+
+height:100%;
+
+width:55%;
+
+background:linear-gradient(90deg,#12C48B,#0B9F6B);
+
+}
+
+.join-now{
+
+margin-top:18px;
+
+height:52px;
+
+border-radius:16px;
 
 background:#0B66FF;
 
 color:white;
 
-border-radius:14px;
-
 font-size:16px;
 
-font-weight:600;
+font-weight:700;
+
+width:100%;
+
+}
+
+/* Winners */
+
+.winner-card{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+background:white;
+
+padding:16px;
+
+border-radius:20px;
+
+margin-bottom:15px;
+
+box-shadow:var(--shadow);
+
+}
+
+.winner-left{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+.winner-image{
+
+width:50px;
+
+height:50px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+}
+
+.winner-image img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+.winner-prize{
+
+font-size:18px;
+
+font-weight:800;
+
+color:#12C48B;
 
 }
