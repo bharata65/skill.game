@@ -153,7 +153,7 @@ p.subtitle {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
-/* Updated Button for Fast Click */
+/* 100% Working Fast Button */
 .play-btn {
     display: block;
     width: 100%;
@@ -169,6 +169,8 @@ p.subtitle {
     box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
 
 .play-btn:active {
@@ -176,7 +178,6 @@ p.subtitle {
     box-shadow: 0 5px 15px rgba(0, 255, 200, 0.3);
 }
 
-/* Trust Badges Styling */
 .trust-badges {
     display: flex;
     justify-content: center;
@@ -224,10 +225,9 @@ p.subtitle {
         </div>
     </div>
 
-    <!-- Redirect Link Updated Here -->
-    <a href="https://bharata65.github.io/skill.game/" class="play-btn">PLAY NOW 🚀</a>
+    <!-- 100% Working Redirect Button -->
+    <a href="https://bharata65.github.io/skill.game/" target="_blank" class="play-btn" onclick="window.location.href='https://bharata65.github.io/skill.game/'; return true;">PLAY NOW 🚀</a>
 
-    <!-- Trust Badges Added Here -->
     <div class="trust-badges">
         <span>🔒 100% SECURE</span>
         <span>⚡ FAST WITHDRAWAL</span>
@@ -235,7 +235,6 @@ p.subtitle {
 </div>
 
 <script>
-    // 1 Minute Countdown Timer Logic
     let timeLeft = 60; 
     const timerElement = document.getElementById('timer');
 
