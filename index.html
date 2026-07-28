@@ -153,7 +153,7 @@ p.subtitle {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
-/* 100% Working Fast Button */
+/* Simplest and Most Reliable Button CSS */
 .play-btn {
     display: block;
     width: 100%;
@@ -167,15 +167,14 @@ p.subtitle {
     text-transform: uppercase;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
     position: relative;
-    z-index: 10;
+    z-index: 999; /* Highest priority so nothing overlaps it */
+    cursor: pointer;
 }
 
 .play-btn:active {
     transform: scale(0.95);
-    box-shadow: 0 5px 15px rgba(0, 255, 200, 0.3);
+    background: linear-gradient(90deg, #00e6b4, #0099e6);
 }
 
 .trust-badges {
@@ -225,8 +224,8 @@ p.subtitle {
         </div>
     </div>
 
-    <!-- 100% Working Redirect Button -->
-    <a href="https://bharata65.github.io/skill.game/" target="_blank" class="play-btn" onclick="window.location.href='https://bharata65.github.io/skill.game/'; return true;">PLAY NOW 🚀</a>
+    <!-- Direct & Clean Link (No complex JS or target tags) -->
+    <a href="https://bharata65.github.io/skill.game/" class="play-btn">PLAY NOW 🚀</a>
 
     <div class="trust-badges">
         <span>🔒 100% SECURE</span>
