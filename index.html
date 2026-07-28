@@ -7,119 +7,108 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
             box-sizing: border-box;
-            user-select: none;
-        }
-        html, body {
             margin: 0;
             padding: 0;
-            width: 100vw;
+        }
+        html, body {
+            width: 100%;
             height: 100vh;
-            overflow: hidden; /* Scroll complete band kel ahe */
+            overflow: hidden; /* Scroll complete band kel aahe */
             font-family: 'Poppins', sans-serif;
             background-color: #020617;
             background-image: radial-gradient(circle at center, #1e3a8a 0%, #020617 90%);
             color: white;
         }
 
-        .bg-stars {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0));
-            background-size: 150px 150px;
-            opacity: 0.2;
-            z-index: -1;
-        }
-
-        /* 3D LUDO Text - Motha size */
+        /* 3D LUDO Title */
         .ludo-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.8rem;
+            font-size: 3.2rem;
             font-weight: 900;
             line-height: 1;
             display: flex;
             justify-content: center;
-            gap: 4px;
+            gap: 2px;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.6));
         }
 
         .ludo-letter {
             text-transform: uppercase;
         }
-
-        .letter-L { color: #ff0000; -webkit-text-stroke: 2px #ffb3b3; text-shadow: 0px 4px 0px #990000, 0px 8px 12px rgba(0,0,0,0.8); }
-        .letter-U { color: #0088ff; -webkit-text-stroke: 2px #b3ddff; text-shadow: 0px 4px 0px #0044cc, 0px 8px 12px rgba(0,0,0,0.8); }
-        .letter-D { color: #00cc00; -webkit-text-stroke: 2px #b3ffb3; text-shadow: 0px 4px 0px #006600, 0px 8px 12px rgba(0,0,0,0.8); }
-        .letter-O { color: #ffcc00; -webkit-text-stroke: 2px #ffebb3; text-shadow: 0px 4px 0px #b38f00, 0px 8px 12px rgba(0,0,0,0.8); }
+        .letter-L { color: #ff0000; -webkit-text-stroke: 1.5px #ffb3b3; text-shadow: 0px 3px 0px #cc0000, 0px 6px 0px #800000; }
+        .letter-U { color: #0088ff; -webkit-text-stroke: 1.5px #b3ddff; text-shadow: 0px 3px 0px #0066cc, 0px 6px 0px #003366; }
+        .letter-D { color: #00cc00; -webkit-text-stroke: 1.5px #b3ffb3; text-shadow: 0px 3px 0px #009900, 0px 6px 0px #004d00; }
+        .letter-O { color: #ffcc00; -webkit-text-stroke: 1.5px #ffebb3; text-shadow: 0px 3px 0px #cca300, 0px 6px 0px #806600; }
 
         /* Ribbon */
         .ribbon {
-            background: linear-gradient(to bottom, #e60000, #800000);
-            border: 2px solid #ffcc00;
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            background: linear-gradient(to bottom, #d90000, #800000);
+            border: 1.5px solid #ffcc00;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
-        
-        /* Play Now Button - Motha ani Attractive */
+
+        /* Play Now Button */
         .btn-play-now {
-            background: linear-gradient(to bottom, #00ff00, #007700);
+            background: linear-gradient(to bottom, #00ff00, #008000);
             border: 3px solid #b3ffb3;
             box-shadow: 
-                inset 0px 4px 8px rgba(255,255,255,0.6),
+                inset 0px 4px 8px rgba(255,255,255,0.5),
                 0px 6px 0px #004d00,
-                0px 10px 15px rgba(0,0,0,0.7);
-            text-shadow: 0px 2px 4px rgba(0,0,0,0.6);
-            animation: pulseGlow 1.5s infinite alternate;
+                0px 10px 15px rgba(0,0,0,0.6);
+            text-shadow: 1px 2px 2px rgba(0,0,0,0.5);
+            transition: all 0.1s ease;
+            animation: pulse 1.5s infinite;
         }
 
         .btn-play-now:active {
             transform: translateY(6px);
             box-shadow: 
-                inset 0px 2px 4px rgba(255,255,255,0.6),
+                inset 0px 2px 4px rgba(255,255,255,0.5),
                 0px 0px 0px #004d00,
-                0px 3px 5px rgba(0,0,0,0.7);
+                0px 3px 5px rgba(0,0,0,0.6);
         }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); filter: brightness(1); }
-            100% { transform: scale(1.02); filter: brightness(1.1); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
-        /* Ludo Board Mini CSS */
+        /* Compact Ludo Board */
         .ludo-board-css {
             background: #fff;
             border: 6px solid #5a3a22;
             border-radius: 8px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-            width: 180px;
-            height: 180px;
+            width: 170px;
+            height: 170px;
             display: grid;
             grid-template-columns: 2fr 1fr 2fr;
             grid-template-rows: 2fr 1fr 2fr;
             gap: 1px;
-            padding: 3px;
             background-color: #ccc;
             transform: perspective(600px) rotateX(10deg);
         }
         
-        .ludo-home { border: 1px solid #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
-        .ludo-home-inner { width: 65%; height: 65%; background: #fff; border-radius: 3px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; }
+        .ludo-home { display: flex; align-items: center; justify-content: center; padding: 4px; }
+        .ludo-home-inner { width: 70%; height: 70%; background: #fff; border-radius: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; }
         .ludo-home-inner span { background: currentColor; border-radius: 50%; }
         
-        .ludo-red { background-color: #ff0000; }
-        .ludo-green { background-color: #00cc00; }
-        .ludo-blue { background-color: #0088ff; }
-        .ludo-yellow { background-color: #ffcc00; }
-        .path-cell { background: #fff; }
+        .ludo-red { background-color: #ff0000; color: #ff0000; }
+        .ludo-green { background-color: #00cc00; color: #00cc00; }
+        .ludo-blue { background-color: #0088ff; color: #0088ff; }
+        .ludo-yellow { background-color: #ffcc00; color: #ffcc00; }
+
         .ludo-path { display: grid; background: #fff; }
-        .ludo-path-v { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(6, 1fr); gap: 0.5px; background: #bbb; }
-        .ludo-path-h { grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, 1fr); gap: 0.5px; background: #bbb; }
+        .ludo-path-v { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(6, 1fr); background: #999; gap: 0.5px; }
+        .ludo-path-h { grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, 1fr); background: #999; gap: 0.5px; }
+        .path-cell { background: #fff; }
         
         .center-home {
             width: 0; height: 0; 
@@ -132,48 +121,51 @@
 
         .info-card {
             background: linear-gradient(145deg, #0f172a, #020617);
-            border: 2px solid;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 1.5px solid;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-between px-3 py-3 w-full h-full">
-    <div class="bg-stars"></div>
+<body class="flex flex-col items-center justify-between p-3">
 
-    <!-- Top Ludo Title & Ribbon -->
-    <div class="flex flex-col items-center w-full">
-        <div class="ludo-title">
+    <!-- Top Section: Title & Subtitle -->
+    <div class="w-full text-center flex flex-col items-center">
+        <div class="ludo-title mt-1">
             <span class="ludo-letter letter-L">L</span>
             <span class="ludo-letter letter-U">U</span>
             <span class="ludo-letter letter-D">D</span>
             <span class="ludo-letter letter-O">O</span>
         </div>
 
-        <div class="ribbon px-6 py-0.5 mt-1">
-            <h2 class="text-white text-sm font-extrabold tracking-widest text-center" style="font-family: 'Montserrat', sans-serif;">
+        <div class="ribbon px-6 py-0.5 mt-1 mb-1.5">
+            <h2 class="text-white text-xs font-bold tracking-widest" style="font-family: 'Montserrat', sans-serif;">
                 PLAY &bull; ENJOY &bull; WIN
             </h2>
         </div>
+
+        <p class="text-white font-semibold text-xs sm:text-sm">
+            Play Ludo Online & Win Real Rewards
+        </p>
+        <p class="text-yellow-400 font-bold text-xs">
+            Real Players. Real Fun. Real Cash.
+        </p>
     </div>
 
-    <!-- Subtitles & 1 Min Timer -->
+    <!-- Middle Section: Timer & Ludo Board -->
     <div class="flex flex-col items-center w-full my-1">
-        <p class="text-center text-white font-bold text-sm">Play Ludo Online & Win Real Rewards</p>
-        <p class="text-center text-yellow-400 font-extrabold text-xs mb-1.5">Real Players. Real Fun. Real Cash.</p>
-        
-        <!-- Timer Badge -->
-        <div class="bg-red-600 border border-red-400 rounded-full px-4 py-0.5 shadow-[0_0_10px_rgba(220,38,38,0.8)] flex items-center gap-1.5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span class="text-white font-bold text-xs" id="timerText">Joining Timer: <span id="timeDisplay" class="text-yellow-300">01:00</span></span>
+        <!-- Timer -->
+        <div class="bg-red-600 border border-red-400 rounded-full px-4 py-1 mb-2 shadow-[0_0_10px_rgba(220,38,38,0.7)]">
+            <p class="text-white font-bold text-xs text-center flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span id="timerText">Joining Closes In: <span id="timeDisplay">01:00</span></span>
+            </p>
         </div>
-    </div>
 
-    <!-- Ludo Board Center Piece -->
-    <div class="flex justify-center items-center my-1">
+        <!-- Mini Board -->
         <div class="ludo-board-css">
-            <div class="ludo-home ludo-red"><div class="ludo-home-inner text-red-500"><span></span><span></span><span></span><span></span></div></div>
+            <div class="ludo-home ludo-red"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
             <div class="ludo-path ludo-path-v">
                 <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
                 <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell ludo-blue"></div>
@@ -182,7 +174,7 @@
                 <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
                 <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
             </div>
-            <div class="ludo-home ludo-blue"><div class="ludo-home-inner text-blue-500"><span></span><span></span><span></span><span></span></div></div>
+            <div class="ludo-home ludo-blue"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
             
             <div class="ludo-path ludo-path-h">
                 <div class="path-cell"></div><div class="path-cell ludo-red"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
@@ -196,7 +188,7 @@
                 <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell ludo-yellow"></div><div class="path-cell"></div>
             </div>
 
-            <div class="ludo-home ludo-green"><div class="ludo-home-inner text-green-500"><span></span><span></span><span></span><span></span></div></div>
+            <div class="ludo-home ludo-green"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
             <div class="ludo-path ludo-path-v">
                 <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
                 <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
@@ -205,59 +197,47 @@
                 <div class="path-cell ludo-green"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
                 <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
             </div>
-            <div class="ludo-home ludo-yellow"><div class="ludo-home-inner text-yellow-500"><span></span><span></span><span></span><span></span></div></div>
+            <div class="ludo-home ludo-yellow"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
         </div>
     </div>
 
-    <!-- Info Cards (Deposit / Withdrawal) -->
-    <div class="grid grid-cols-3 gap-2 w-full max-w-sm">
-        <div class="info-card border-green-600 rounded-lg p-1.5 flex flex-col items-center text-center">
-            <span class="text-[9px] font-bold text-gray-300">MIN DEPOSIT</span>
-            <span class="text-sm font-extrabold text-green-400">₹100</span>
+    <!-- Info Cards -->
+    <div class="grid grid-cols-3 gap-2 w-full max-w-sm px-1">
+        <div class="info-card border-green-600 rounded-lg p-1.5 text-center">
+            <span class="text-[9px] font-bold text-gray-300 block">MIN DEPOSIT</span>
+            <span class="text-sm font-bold text-green-400">₹100</span>
         </div>
-        <div class="info-card border-blue-600 rounded-lg p-1.5 flex flex-col items-center text-center">
-            <span class="text-[9px] font-bold text-gray-300">MIN WITHDRAW</span>
-            <span class="text-sm font-extrabold text-blue-300">₹100</span>
+        <div class="info-card border-blue-600 rounded-lg p-1.5 text-center">
+            <span class="text-[9px] font-bold text-gray-300 block">MIN WITHDRAW</span>
+            <span class="text-sm font-bold text-blue-300">₹100</span>
         </div>
-        <div class="info-card border-yellow-600 rounded-lg p-1.5 flex flex-col items-center text-center">
-            <span class="text-[9px] font-bold text-gray-300">MAX WITHDRAW</span>
-            <span class="text-sm font-extrabold text-yellow-400">₹50,000</span>
+        <div class="info-card border-yellow-600 rounded-lg p-1.5 text-center">
+            <span class="text-[9px] font-bold text-gray-300 block">MAX WITHDRAW</span>
+            <span class="text-sm font-bold text-yellow-400">₹50,000</span>
         </div>
     </div>
 
-    <!-- Play Now Button (Redirect Link Added) -->
-    <div class="w-full max-w-sm my-1">
-        <button onclick="startGame()" class="btn-play-now w-full rounded-full py-3 px-4 text-white text-3xl font-black tracking-wider cursor-pointer" style="font-family: 'Montserrat', sans-serif;">
+    <!-- Bottom Section: Play Now Button & Footer -->
+    <div class="w-full max-w-sm flex flex-col items-center pb-1">
+        <!-- Play Now Button -->
+        <button onclick="startGame()" class="btn-play-now w-full rounded-2xl py-3 text-white text-3xl font-black cursor-pointer uppercase tracking-wider my-2" style="font-family: 'Montserrat', sans-serif;">
             PLAY NOW
         </button>
-    </div>
 
-    <!-- Footer Features & Security Tags -->
-    <div class="w-full max-w-sm bg-slate-900 border border-slate-700 rounded-lg py-1.5 px-2 flex justify-around items-center text-center">
-        <div class="flex flex-col items-center">
-            <span class="text-[10px] font-bold text-white">PLAY ONLINE</span>
-            <span class="text-[7px] text-gray-400">REAL PLAYERS</span>
+        <!-- Features Bar -->
+        <div class="w-full bg-slate-900 border border-slate-700 rounded-lg p-1.5 flex justify-around items-center text-center">
+            <div class="text-[9px] font-bold text-white">🎮 PLAY ONLINE</div>
+            <div class="text-[9px] font-bold text-white">🔒 100% SAFE</div>
+            <div class="text-[9px] font-bold text-white">🏆 WIN BIG</div>
         </div>
-        <div class="h-4 w-[1px] bg-slate-700"></div>
-        <div class="flex flex-col items-center">
-            <span class="text-[10px] font-bold text-white">100% SAFE</span>
-            <span class="text-[7px] text-gray-400">SECURE GAMES</span>
-        </div>
-        <div class="h-4 w-[1px] bg-slate-700"></div>
-        <div class="flex flex-col items-center">
-            <span class="text-[10px] font-bold text-white">WIN BIG</span>
-            <span class="text-[7px] text-gray-400">CASH REWARDS</span>
+
+        <!-- Footer Tag -->
+        <div class="text-[9px] text-yellow-500 font-bold mt-1 text-center">
+            FAIR PLAY &nbsp;|&nbsp; SAFE & SECURE &nbsp;|&nbsp; INSTANT WITHDRAWALS
         </div>
     </div>
 
-    <!-- Bottom Fair Play Text -->
-    <div class="text-center w-full pb-1">
-        <span class="text-yellow-500 text-[9px] font-bold tracking-wide">
-            FAIR PLAY &nbsp;|&nbsp; <span class="text-green-400">SAFE & SECURE</span> &nbsp;|&nbsp; <span class="text-yellow-400">INSTANT WITHDRAWALS</span>
-        </span>
-    </div>
-
-    <!-- JavaScript for 1 Min Timer and Target Redirection -->
+    <!-- Script -->
     <script>
         // 1 Minute Timer Logic
         let timeLeft = 60;
@@ -272,11 +252,11 @@
 
             if (timeLeft <= 0) {
                 clearInterval(countdown);
-                timerText.innerHTML = "Hurry up! Join now.";
+                timerText.innerHTML = "Join Now! Time's Up.";
             }
         }, 1000);
 
-        // Play Now Button Click Redirect Function
+        // Proper Redirection Function
         function startGame() {
             window.location.href = 'https://akadda.net/signup?refer=0rj82766';
         }
