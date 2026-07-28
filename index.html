@@ -61,17 +61,19 @@ html, body {
     z-index: 1; 
 }
 
-.hero-image {
-    width: 160px;
+/* नवीन Emoji Logo साठी CSS */
+.hero-emoji {
+    font-size: 100px;
+    line-height: 1;
     margin: -10px auto 15px;
     display: block;
-    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));
+    filter: drop-shadow(0px 10px 25px rgba(0,0,0,0.6));
     animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-15px); }
 }
 
 h1 {
@@ -153,14 +155,14 @@ p.subtitle {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
-/* Simplest and Most Reliable Button CSS */
+/* 100% Working Fast Button - Changed to pure button tag */
 .play-btn {
     display: block;
     width: 100%;
     padding: 18px;
     background: linear-gradient(90deg, #00ffc8, #00aaff);
     color: #04101f;
-    text-decoration: none;
+    border: none;
     border-radius: 60px;
     font-size: 24px;
     font-weight: 900;
@@ -168,13 +170,14 @@ p.subtitle {
     text-align: center;
     box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
     position: relative;
-    z-index: 999; /* Highest priority so nothing overlaps it */
+    z-index: 999; 
     cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
 }
 
 .play-btn:active {
     transform: scale(0.95);
-    background: linear-gradient(90deg, #00e6b4, #0099e6);
+    filter: brightness(1.1);
 }
 
 .trust-badges {
@@ -200,7 +203,8 @@ p.subtitle {
 
 <div class="card">
     
-    <img src="https://cdn-icons-png.flaticon.com/512/806/806055.png" alt="Ludo Dice" class="hero-image">
+    <!-- नवीन 🎲 लोगो -->
+    <div class="hero-emoji">🎲</div>
     
     <h1>PLAY <span>LUDO</span></h1>
     <p class="subtitle">Show Your Skills & Win Cash!</p>
@@ -224,8 +228,8 @@ p.subtitle {
         </div>
     </div>
 
-    <!-- Direct & Clean Link (No complex JS or target tags) -->
-    <a href="https://bharata65.github.io/skill.game/" class="play-btn">PLAY NOW 🚀</a>
+    <!-- 100% Working Redirect Button with Pure JavaScript -->
+    <button class="play-btn" onclick="window.location.href='https://bharata65.github.io/skill.game/';">PLAY NOW 🚀</button>
 
     <div class="trust-badges">
         <span>🔒 100% SECURE</span>
