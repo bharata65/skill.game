@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Added maximum-scale and user-scalable=no to prevent browser zoom -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Play Ludo</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
@@ -16,137 +17,112 @@ box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
 
+/* Added strict width/height to html and body to fix mobile fitting */
+html, body {
+width: 100%;
+height: 100%;
+overflow: hidden;
+touch-action: none; /* Prevents double-tap zooming on mobile */
+}
+
 body{
-
-height:100vh;
-
-background:
-linear-gradient(135deg,#08162d,#0d3b66,#04101f);
-
-overflow:hidden;
-
+background: linear-gradient(135deg,#08162d,#0d3b66,#04101f);
 display:flex;
 justify-content:center;
 align-items:center;
-
 color:white;
-
 }
 
 .bg{
-
 position:absolute;
 width:180%;
 height:180%;
+top: -40%;  /* Centers the rotating background so it doesn't push the screen */
+left: -40%;
 background:
 radial-gradient(circle,#00ffbf22 0%,transparent 50%),
 radial-gradient(circle,#00aaff22 0%,transparent 45%),
 radial-gradient(circle,#ffffff10 0%,transparent 40%);
 animation:move 15s linear infinite;
-
+z-index: 0;
 }
 
 @keyframes move{
-
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
-
 }
 
 .card{
-
 position:relative;
 width:92%;
 max-width:430px;
-
 padding:45px;
-
 border-radius:30px;
-
 backdrop-filter:blur(18px);
-
 background:rgba(255,255,255,.08);
-
 border:1px solid rgba(255,255,255,.15);
-
 text-align:center;
-
 box-shadow:0 0 50px rgba(0,255,180,.2);
-
+z-index: 1; /* Ensures card stays on top of the background */
 }
 
 .logo{
-
 font-size:72px;
-
 }
 
 h1{
-
 font-size:52px;
-
 font-weight:900;
-
 line-height:1.05;
-
 margin-top:20px;
-
 }
 
 span{
-
 color:#00ffc8;
-
 }
 
 p{
-
-margin:20px 0 35px;
-
+margin:20px 0 20px;
 font-size:18px;
-
 opacity:.9;
+}
 
+/* Styling for the urgency countdown */
+.countdown {
+color: #ff4757;
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 25px;
+animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+0% { transform: scale(1); opacity: 1; }
+50% { transform: scale(1.05); opacity: 0.8; }
+100% { transform: scale(1); opacity: 1; }
 }
 
 button{
-
 width:100%;
-
 padding:18px;
-
 border:none;
-
 border-radius:60px;
-
 font-size:24px;
-
 font-weight:800;
-
 background:linear-gradient(90deg,#00ff99,#00d9ff);
-
 color:#000;
-
 cursor:pointer;
-
 transition:.3s;
-
 }
 
 button:hover{
-
 transform:scale(1.05);
-
 }
 
 .footer{
-
 margin-top:25px;
-
 font-size:13px;
-
 opacity:.65;
-
 }
 
 </style>
@@ -168,6 +144,9 @@ Fast Matches • Smooth Gameplay<br>
 Play Anytime • Challenge Friends
 </p>
 
+<!-- Countdown Timer Element -->
+<div class="countdown" id="timer">Joining closes in: 01:00</div>
+
 <button onclick="location.href='https://akadda.net/signup?refer=0rj82766'">
 PLAY NOW
 </button>
@@ -177,6 +156,33 @@ PLAY NOW
 </div>
 
 </div>
+
+<!-- JavaScript for 1 Minute Countdown -->
+<script>
+    let timeLeft = 60; 
+    const timerElement = document.getElementById('timer');
+
+    const countdownInterval = setInterval(() => {
+        timeLeft--;
+        
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        
+        // Add leading zero if seconds are less than 10
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        
+        timerElement.innerText = `Joining closes in: ${minutes}:${seconds}`;
+
+        // Stop timer at 00:00
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            timerElement.innerText = "Match Starting Now!";
+            timerElement.style.color = "#00ff99"; // Changes color to green when time is up
+            timerElement.style.animation = "none"; 
+        }
+    }, 1000);
+</script>
 
 </body>
 </html>
