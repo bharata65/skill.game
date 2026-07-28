@@ -1,161 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
     <meta charset="UTF-8">
-    <!-- Mobile fitted and non-zoomable configuration -->
+    <!-- Mobile fitted & Non-Zoomable Meta Tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Play Ludo Online</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <title>Ludo Master - Play Now</title>
     <style>
+        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            /* Disable text selection and highlight on mobile */
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            /* Advanced animated Ludo theme colors gradient */
-            background: linear-gradient(-45deg, #ff0044, #0044ff, #00cc44, #ffcc00);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: radial-gradient(circle at center, #2b1055, #000000);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             height: 100vh;
+            overflow: hidden; /* Prevents scrolling */
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            overflow: hidden;
-            color: white;
+            justify-content: center;
+            touch-action: manipulation; /* Prevents double-tap zoom on mobiles */
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* 3D Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(15deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        /* Glassmorphism Card Effect */
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 25px;
-            padding: 40px 20px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Glowing Pulse Animation for Button */
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 15px #ff007a, 0 0 30px #ff007a; }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px #ff007a, 0 0 60px #ff007a; }
+            100% { transform: scale(1); box-shadow: 0 0 15px #ff007a, 0 0 30px #ff007a; }
+        }
+
+        /* Background Ludo Graphic */
+        .ludo-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2002/2002511.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.15;
+            z-index: 0;
+            animation: float 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+        }
+
+        /* Floating Elements Container */
+        .floating-graphics {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Allows clicking through */
+            z-index: 1;
+        }
+
+        .graphic-item {
+            position: absolute;
+            font-size: 3.5rem;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.8));
+        }
+
+        .dice-1 { top: 15%; left: 10%; animation-delay: 0s; font-size: 4rem; }
+        .dice-2 { top: 65%; right: 10%; animation-delay: 1.5s; font-size: 5rem; }
+        .token-1 { bottom: 20%; left: 15%; animation-delay: 2.5s; color: #ff004c; text-shadow: 0 0 10px red; }
+        .token-2 { top: 25%; right: 15%; animation-delay: 1s; color: #00ff88; text-shadow: 0 0 10px green; }
+
+        /* Main Content UI */
+        .ui-container {
             position: relative;
             z-index: 10;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
         }
 
-        /* Floating Ludo Image */
-        .logo {
-            width: 140px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0px 15px 15px rgba(0,0,0,0.4));
-            animation: floatLogo 3s ease-in-out infinite;
-        }
-
-        .title {
-            font-size: 2.2em;
+        h1 {
+            font-size: 2.8rem;
             font-weight: 900;
             text-transform: uppercase;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
             letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
         }
 
-        .subtitle {
-            font-size: 0.95em;
-            font-weight: 400;
-            margin-bottom: 30px;
-            color: #f0f0f0;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #b3c0d1;
+            margin-bottom: 35px;
+            font-weight: 500;
         }
 
-        /* Play Now Button with Glow */
-        .play-btn {
+        /* Advanced Play Button */
+        .play-now-btn {
             display: inline-block;
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
-            color: white;
+            padding: 18px 50px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: linear-gradient(90deg, #ff007a, #7000ff);
             text-decoration: none;
-            font-size: 1.4em;
-            font-weight: 700;
-            padding: 16px 45px;
             border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(229, 46, 113, 0.6);
+            border: 2px solid transparent;
+            cursor: pointer;
+            animation: pulseGlow 2s infinite;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            animation: pulseBtn 2s infinite;
+            letter-spacing: 2px;
         }
 
-        .play-btn:active {
-            transform: scale(0.92);
-            box-shadow: 0 5px 15px rgba(229, 46, 113, 0.4);
-        }
-
-        /* Animations */
-        @keyframes pulseBtn {
-            0% { transform: scale(1); box-shadow: 0 10px 25px rgba(229, 46, 113, 0.6); }
-            50% { transform: scale(1.05); box-shadow: 0 15px 35px rgba(229, 46, 113, 0.8); }
-            100% { transform: scale(1); box-shadow: 0 10px 25px rgba(229, 46, 113, 0.6); }
-        }
-
-        @keyframes floatLogo {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Background Dice Elements */
-        .dice {
-            position: absolute;
-            font-size: 4rem;
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
-            z-index: 1;
-            animation: spinFloat 6s linear infinite;
-        }
-
-        .dice-1 { top: 10%; left: 5%; animation-duration: 7s; }
-        .dice-2 { bottom: 15%; right: 5%; animation-duration: 5s; animation-direction: reverse; }
-        .dice-3 { top: 15%; right: 10%; font-size: 2.5rem; animation-duration: 8s; }
-        .dice-4 { bottom: 10%; left: 10%; font-size: 3rem; animation-duration: 6s; }
-
-        @keyframes spinFloat {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
+        .play-now-btn:active {
+            transform: scale(0.92) !important;
+            box-shadow: 0 0 10px #ff007a;
         }
     </style>
 </head>
 <body>
 
-    <!-- Animated 3D/Emoji Dice Floating in Background -->
-    <div class="dice dice-1">🎲</div>
-    <div class="dice dice-2">🎲</div>
-    <div class="dice dice-3">🎲</div>
-    <div class="dice dice-4">🎲</div>
+    <!-- Center Ludo Watermark Background -->
+    <div class="ludo-bg"></div>
 
-    <div class="container">
-        <!-- Ludo PNG Image (Replace src with your own image if needed) -->
-        <img src="https://cdn-icons-png.flaticon.com/512/806/806135.png" alt="Ludo Game" class="logo">
+    <!-- Floating Graphics (Dice and Tokens) -->
+    <div class="floating-graphics">
+        <div class="graphic-item dice-1">🎲</div>
+        <div class="graphic-item dice-2">🎲</div>
+        <div class="graphic-item token-1">♟️</div>
+        <div class="graphic-item token-2">♟️</div>
+    </div>
+
+    <!-- Glassmorphism Container -->
+    <div class="ui-container">
+        <h1>Ludo King</h1>
+        <p class="subtitle">Play & Win Big Today</p>
         
-        <h1 class="title">Play Ludo</h1>
-        <p class="subtitle">Roll the dice, make your move, and win!</p>
-        
-        <!-- Action Button with direct link -->
-        <a href="https://bharata65.github.io/skill.game/" class="play-btn">Play Now</a>
+        <!-- Action Button (Redirect to your link) -->
+        <a href="https://bharata65.github.io/skill.game/" class="play-now-btn">Play Now</a>
     </div>
 
 </body>
 </html>
+
