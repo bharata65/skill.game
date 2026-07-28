@@ -3,192 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Play Ludo & Win</title>
+<title>Mega Ludo Clash - Win Cash</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
-html, body {
+body {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, #08162d, #0d3b66, #04101f);
+    background: radial-gradient(circle at top, #3a005c, #0a0014);
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    overflow-x: hidden;
-    touch-action: pan-y;
+    overflow: hidden;
+    position: relative;
 }
 
-.bg {
-    position: fixed;
-    width: 180%;
-    height: 180%;
-    top: -40%;  
-    left: -40%;
-    background:
-        radial-gradient(circle, #00ffbf22 0%, transparent 50%),
-        radial-gradient(circle, #00aaff22 0%, transparent 45%),
-        radial-gradient(circle, #ffffff10 0%, transparent 40%);
-    animation: move 15s linear infinite;
+/* Background Falling Coins Animation */
+.coins-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
     z-index: 0;
 }
 
-@keyframes move {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.coin-drop {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2618/2618281.png'); /* Gold Coin PNG */
+    background-size: cover;
+    animation: fall linear infinite;
+    filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.5));
 }
 
-.card {
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Premium Glassmorphism Card */
+.premium-card {
     position: relative;
     width: 92%;
-    max-width: 430px;
-    padding: 35px 25px;
-    margin: 20px 0;
-    border-radius: 30px;
-    backdrop-filter: blur(18px);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    max-width: 420px;
+    padding: 30px 20px;
+    border-radius: 25px;
+    background: rgba(20, 0, 40, 0.6);
+    backdrop-filter: blur(15px);
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1);
     text-align: center;
-    box-shadow: 0 0 50px rgba(0, 255, 180, 0.2);
-    z-index: 1; 
+    z-index: 10;
 }
 
-/* 🎲 Emoji Logo */
-.hero-emoji {
-    font-size: 100px;
-    line-height: 1;
-    margin: -10px auto 15px;
-    display: block;
-    filter: drop-shadow(0px 10px 25px rgba(0,0,0,0.6));
-    animation: float 3s ease-in-out infinite;
+/* Header Graphics (Dice + Cash) */
+.graphics-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -15px;
+    position: relative;
 }
 
-@keyframes float {
+.money-png {
+    width: 90px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    animation: floatMoney 3s infinite ease-in-out;
+}
+
+.dice-png {
+    width: 130px;
+    z-index: 2;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
+    animation: bounceDice 2s infinite ease-in-out;
+}
+
+@keyframes bounceDice {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes floatMoney {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-10px); }
 }
 
 h1 {
-    font-size: 46px;
+    font-size: 42px;
     font-weight: 900;
-    line-height: 1.1;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
-
-h1 span {
-    color: #00ffc8;
-    text-shadow: 0 0 15px rgba(0, 255, 200, 0.6);
-}
-
-p.subtitle {
-    margin: 15px 0 20px;
-    font-size: 16px;
-    opacity: 0.9;
-    letter-spacing: 1px;
-}
-
-.countdown-box {
-    background: rgba(255, 71, 87, 0.15);
-    border: 1px solid #ff4757;
-    border-radius: 12px;
-    padding: 10px;
-    margin-bottom: 25px;
-}
-
-.countdown {
-    color: #ff4757;
-    font-size: 20px;
-    font-weight: 900;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.8; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.info-item {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 12px 5px;
-}
-
-.info-item.full-width {
-    grid-column: span 2;
-    background: linear-gradient(90deg, rgba(255,215,0,0.1), rgba(255,215,0,0.05));
-    border-color: rgba(255, 215, 0, 0.3);
-}
-
-.info-title {
-    font-size: 12px;
-    color: #a0aec0;
     text-transform: uppercase;
+    background: linear-gradient(to right, #fff, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 20px;
+    line-height: 1.1;
+}
+
+.tagline {
+    font-size: 16px;
+    color: #00ffcc;
+    font-weight: 700;
+    margin: 10px 0 20px;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
+}
+
+/* Stats Box */
+.stats-container {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 25px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.2);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #ccc;
     font-weight: 700;
 }
 
-.info-amount {
-    font-size: 22px;
+.stat-value {
+    font-size: 18px;
     font-weight: 900;
-    color: #ffffff;
-    margin-top: 5px;
+    color: #fff;
 }
 
-.info-item.full-width .info-amount {
+.highlight-gold {
     color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    font-size: 22px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
-/* एकदम साधा आणि परफेक्ट चालणारा Button Code */
-.play-btn {
-    display: block; 
+/* The Ultimate Unblockable Button */
+.action-btn {
+    display: block;
     width: 100%;
     padding: 18px;
-    background: linear-gradient(90deg, #00ffc8, #00aaff);
-    color: #04101f;
-    text-decoration: none; 
-    border-radius: 60px;
+    background: linear-gradient(45deg, #ff0055, #ffaa00);
+    color: #fff;
+    text-decoration: none;
     font-size: 24px;
     font-weight: 900;
+    border-radius: 50px;
     text-transform: uppercase;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
-    position: relative;
-    z-index: 9999; 
+    box-shadow: 0 10px 30px rgba(255, 0, 85, 0.5);
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    animation: pulseBtn 1.5s infinite;
 }
 
-.play-btn:active {
-    transform: scale(0.95);
-    filter: brightness(1.1);
+.action-btn:active {
+    transform: scale(0.92);
 }
 
-.trust-badges {
+@keyframes pulseBtn {
+    0% { box-shadow: 0 0 0 0 rgba(255, 170, 0, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 170, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 170, 0, 0); }
+}
+
+.footer-secure {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #888;
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
-    font-size: 12px;
-    color: #a0aec0;
-    font-weight: 700;
 }
 
-.trust-badges span {
+.footer-secure span {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -197,66 +207,70 @@ p.subtitle {
 </head>
 <body>
 
-<div class="bg"></div>
+<!-- Animated Background Coins -->
+<div class="coins-container" id="coinsBox"></div>
 
-<div class="card">
+<div class="premium-card">
     
-    <div class="hero-emoji">🎲</div>
-    
-    <h1>PLAY <span>LUDO</span></h1>
-    <p class="subtitle">Show Your Skills & Win Cash!</p>
-
-    <div class="countdown-box">
-        <div class="countdown" id="timer">Offer Ends In: 01:00</div>
+    <!-- Gaming Graphics -->
+    <div class="graphics-group">
+        <!-- Cash Stack PNG -->
+        <img src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png" class="money-png" alt="Cash">
+        <!-- Ludo Dice PNG -->
+        <img src="https://cdn-icons-png.flaticon.com/512/6122/6122170.png" class="dice-png" alt="Dice">
     </div>
 
-    <div class="info-grid">
-        <div class="info-item">
-            <div class="info-title">Min Deposit</div>
-            <div class="info-amount">₹100</div>
+    <h1>MEGA LUDO</h1>
+    <div class="tagline">PLAY GAMES • WIN REAL CASH</div>
+
+    <div class="stats-container">
+        <div class="stat-row">
+            <span class="stat-label">Min Deposit</span>
+            <span class="stat-value">₹100</span>
         </div>
-        <div class="info-item">
-            <div class="info-title">Min Withdraw</div>
-            <div class="info-amount">₹100</div>
+        <div class="stat-row">
+            <span class="stat-label">Min Withdraw</span>
+            <span class="stat-value">₹100</span>
         </div>
-        <div class="info-item full-width">
-            <div class="info-title">Maximum Withdrawal</div>
-            <div class="info-amount">₹50,000</div>
+        <div class="stat-row">
+            <span class="stat-label">Max Withdraw</span>
+            <span class="stat-value highlight-gold">₹50,000</span>
         </div>
     </div>
 
-    <!-- एकदम क्लीन HTML लिंक (कोणतीही JavaScript नाही) -->
-    <a href="https://bharata65.github.io/skill.game/" class="play-btn">PLAY NOW 🚀</a>
+    <!-- The 100% Working Button -->
+    <a href="https://bharata65.github.io/skill.game/" id="playButton" class="action-btn">PLAY NOW 💸</a>
 
-    <div class="trust-badges">
-        <span>🔒 100% SECURE</span>
-        <span>⚡ FAST WITHDRAWAL</span>
+    <div class="footer-secure">
+        <span>🛡️ 100% Safe</span>
+        <span>⚡ Instant Payout</span>
     </div>
 </div>
 
 <script>
-    // फक्त टायमरसाठी स्क्रिप्ट 
-    let timeLeft = 60; 
-    const timerElement = document.getElementById('timer');
+    // Falling Coins Generator Script
+    const coinsContainer = document.getElementById('coinsBox');
+    const totalCoins = 15;
 
-    const countdownInterval = setInterval(() => {
-        timeLeft--;
+    for (let i = 0; i < totalCoins; i++) {
+        let coin = document.createElement('div');
+        coin.classList.add('coin-drop');
         
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
+        // Randomize position, delay, and duration
+        coin.style.left = Math.random() * 100 + 'vw';
+        coin.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        coin.style.animationDelay = Math.random() * 5 + 's';
         
-        if (seconds < 10) {
-            seconds = '0' + seconds;
-        }
+        coinsContainer.appendChild(coin);
+    }
 
-        timerElement.innerHTML = `Offer Ends In: 0${minutes}:${seconds}`;
-
-        if (timeLeft <= 0) {
-            clearInterval(countdownInterval);
-            timerElement.innerHTML = "Hurry Up! Join Now";
-            timerElement.style.color = "#00ffc8"; 
-        }
-    }, 1000);
+    // Force Redirect Script (Bypass for strict apps)
+    document.getElementById('playButton').addEventListener('click', function(e) {
+        // जर ॲपमध्ये लिंक ब्लॉक झाली असेल, तर ही JS काम करेल.
+        setTimeout(function() {
+            window.location.assign("https://bharata65.github.io/skill.game/");
+        }, 100);
+    });
 </script>
 
 </body>
