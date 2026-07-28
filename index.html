@@ -24,11 +24,11 @@ html, body {
     align-items: center;
     color: white;
     overflow-x: hidden;
-    touch-action: pan-y; /* Allows vertical scrolling if needed on small screens */
+    touch-action: pan-y; 
 }
 
 .bg {
-    position: fixed; /* Fixed so it doesn't break scrolling */
+    position: fixed; 
     width: 180%;
     height: 180%;
     top: -40%;  
@@ -61,7 +61,6 @@ html, body {
     z-index: 1; 
 }
 
-/* Ludo Image Styling */
 .hero-image {
     width: 160px;
     margin: -10px auto 15px;
@@ -94,7 +93,6 @@ p.subtitle {
     letter-spacing: 1px;
 }
 
-/* Countdown Timer */
 .countdown-box {
     background: rgba(255, 71, 87, 0.15);
     border: 1px solid #ff4757;
@@ -116,7 +114,6 @@ p.subtitle {
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Payment Info Grid */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -152,11 +149,10 @@ p.subtitle {
 }
 
 .info-item.full-width .info-amount {
-    color: #ffd700; /* Gold color for max withdrawal */
+    color: #ffd700; 
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
-/* Action Button */
 button {
     width: 100%;
     padding: 18px;
@@ -184,7 +180,6 @@ button:active {
 
 <div class="card">
     
-    <!-- इथे तू तुझी Ludo Board किंवा Dice ची PNG टाकू शकतोस. सध्या मी एक ऑनलाइन Dice PNG वापरली आहे. -->
     <img src="https://cdn-icons-png.flaticon.com/512/806/806055.png" alt="Ludo Dice" class="hero-image">
     
     <h1>PLAY <span>LUDO</span></h1>
@@ -209,11 +204,11 @@ button:active {
         </div>
     </div>
 
-    <button onclick="window.location.href='#'">PLAY NOW 🚀</button>
+    <!-- लिंक इथे अपडेट केली आहे -->
+    <button onclick="window.location.href='https://bharata65.github.io/skill.game/'">PLAY NOW 🚀</button>
 </div>
 
 <script>
-    // 1 Minute Countdown Timer Logic
     let timeLeft = 60; 
     const timerElement = document.getElementById('timer');
 
@@ -223,18 +218,16 @@ button:active {
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
         
-        // Add leading zero if seconds are less than 10
         if (seconds < 10) {
             seconds = '0' + seconds;
         }
 
         timerElement.innerHTML = `Offer Ends In: 0${minutes}:${seconds}`;
 
-        // Stop timer when it reaches 0
         if (timeLeft <= 0) {
             clearInterval(countdownInterval);
             timerElement.innerHTML = "Hurry Up! Join Now";
-            timerElement.style.color = "#00ffc8"; // Changes color when expired
+            timerElement.style.color = "#00ffc8"; 
         }
     }, 1000);
 </script>
