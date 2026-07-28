@@ -24,11 +24,11 @@ html, body {
     align-items: center;
     color: white;
     overflow-x: hidden;
-    touch-action: pan-y; 
+    touch-action: pan-y;
 }
 
 .bg {
-    position: fixed; 
+    position: fixed;
     width: 180%;
     height: 180%;
     top: -40%;  
@@ -149,28 +149,48 @@ p.subtitle {
 }
 
 .info-item.full-width .info-amount {
-    color: #ffd700; 
+    color: #ffd700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
-button {
+/* Updated Button for Fast Click */
+.play-btn {
+    display: block;
     width: 100%;
     padding: 18px;
     background: linear-gradient(90deg, #00ffc8, #00aaff);
     color: #04101f;
-    border: none;
+    text-decoration: none;
     border-radius: 60px;
     font-size: 24px;
     font-weight: 900;
     text-transform: uppercase;
-    cursor: pointer;
+    text-align: center;
     box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
     transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
-button:active {
+.play-btn:active {
     transform: scale(0.95);
     box-shadow: 0 5px 15px rgba(0, 255, 200, 0.3);
+}
+
+/* Trust Badges Styling */
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #a0aec0;
+    font-weight: 700;
+}
+
+.trust-badges span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 </style>
 </head>
@@ -204,11 +224,18 @@ button:active {
         </div>
     </div>
 
-    <!-- लिंक इथे अपडेट केली आहे -->
-    <button onclick="window.location.href='https://bharata65.github.io/skill.game/'">PLAY NOW 🚀</button>
+    <!-- Redirect Link Updated Here -->
+    <a href="https://bharata65.github.io/skill.game/" class="play-btn">PLAY NOW 🚀</a>
+
+    <!-- Trust Badges Added Here -->
+    <div class="trust-badges">
+        <span>🔒 100% SECURE</span>
+        <span>⚡ FAST WITHDRAWAL</span>
+    </div>
 </div>
 
 <script>
+    // 1 Minute Countdown Timer Logic
     let timeLeft = 60; 
     const timerElement = document.getElementById('timer');
 
