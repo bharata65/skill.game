@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ludo Skill Game - Play & Win</title>
+    <title>LUDO - Play & Win Cash</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* CSS Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0d1117;
+            background-color: #0b0f19;
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,131 +20,138 @@
             min-height: 100vh;
         }
 
-        /* Mobile Container for Perfect Fitting */
+        /* Mobile Container Perfect Fitting */
         .mobile-container {
             max-width: 480px;
             width: 100%;
-            background: radial-gradient(circle at top, #1f2937, #0d1117);
+            background: radial-gradient(circle at top, #1e1b4b, #0b0f19);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-sizing: border-box;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
             position: relative;
             overflow: hidden;
         }
 
-        /* Ludo Themed Top Bar */
+        /* Ludo Colors Top Strip */
         .ludo-colors {
             display: flex;
-            height: 6px;
+            height: 8px;
             width: 100%;
         }
         .color-box { flex: 1; }
-        .red { background: #ff3838; }
-        .green { background: #3ae374; }
-        .blue { background: #17c0eb; }
-        .yellow { background: #fff200; }
+        .red { background: #ef4444; }
+        .green { background: #22c55e; }
+        .yellow { background: #eab308; }
+        .blue { background: #3b82f6; }
 
-        /* Header Section */
+        /* Header Section - LUDO Word Extra Large */
         .header {
             text-align: center;
-            padding: 20px 10px 10px;
+            padding: 25px 15px 10px;
         }
-        .header h1 {
-            color: #fff;
-            font-size: 32px;
+        .ludo-title {
+            color: #ffffff;
+            font-size: 55px;
             margin: 0;
             font-weight: 900;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 2px 2px 8px rgba(255, 242, 0, 0.3);
+            text-shadow: 0 0 20px rgba(234, 179, 8, 0.6), 3px 3px 0px #ef4444;
         }
-        .header h1 span { color: #fff200; }
+        .ludo-title span {
+            color: #eab308;
+            text-shadow: 0 0 20px rgba(234, 179, 8, 0.8), 3px 3px 0px #3b82f6;
+        }
         
-        /* Dice Image or Emoji */
+        .sub-heading {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-top: 8px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Dice Bounce Animation */
         .dice-icon {
-            font-size: 60px;
-            margin: 10px 0;
-            animation: bounce 2s infinite ease-in-out;
+            font-size: 50px;
+            margin: 5px 0;
+            animation: bounce 1.8s infinite ease-in-out;
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(10deg); }
         }
 
-        /* Countdown Timer Box */
+        /* 1 Min Countdown Timer Box */
         .timer-container {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            margin: 15px 20px;
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px dashed rgba(234, 179, 8, 0.4);
+            border-radius: 16px;
+            margin: 10px 20px;
+            padding: 12px;
             text-align: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
         }
         .timer-title {
-            color: #c8d6e5;
-            font-size: 14px;
-            margin-bottom: 5px;
+            color: #cbd5e1;
+            font-size: 13px;
+            margin-bottom: 4px;
             text-transform: uppercase;
+            font-weight: 700;
             letter-spacing: 1px;
         }
         .timer {
-            font-size: 40px;
+            font-size: 38px;
             font-weight: 900;
-            color: #ff3838;
+            color: #ef4444;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255, 56, 56, 0.6);
+            text-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
         }
 
-        /* Main Play Button */
+        /* PLAY NOW Big Button */
         .cta-section {
             text-align: center;
-            padding: 20px;
-            margin-top: 10px;
+            padding: 15px 20px;
         }
         .play-btn {
-            display: inline-block;
+            display: block;
             width: 100%;
-            padding: 22px 0;
+            padding: 20px 0;
             font-size: 28px;
             font-weight: 900;
-            color: #fff;
-            background: linear-gradient(45deg, #ff3838, #ff9f1a);
+            color: #ffffff;
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
             border: none;
             border-radius: 50px;
             text-decoration: none;
             text-transform: uppercase;
-            box-shadow: 0 10px 25px rgba(255, 56, 56, 0.5);
-            animation: pulse 1.5s infinite;
-            transition: all 0.2s ease;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.6);
+            animation: pulse-animation 1.5s infinite;
             cursor: pointer;
-        }
-        .play-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 5px 15px rgba(255, 56, 56, 0.5);
+            letter-spacing: 1px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 56, 56, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(255, 56, 56, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 56, 56, 0); }
+        @keyframes pulse-animation {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8); }
+            70% { transform: scale(1.04); box-shadow: 0 0 0 18px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
 
-        /* Info Cards (Deposit / Withdrawal) */
+        /* Info Cards (Deposit & Withdrawal) */
         .info-grid {
             display: flex;
-            gap: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
+            gap: 12px;
+            padding: 0 20px 20px;
         }
         .info-card {
             flex: 1;
-            background: #1e272e;
-            padding: 15px 10px;
-            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 10px;
+            border-radius: 14px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -152,75 +161,92 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 4px;
         }
-        .min-card::before { background: #3ae374; }
-        .max-card::before { background: #17c0eb; }
+        .min-card::before { background: #22c55e; }
+        .max-card::before { background: #3b82f6; }
         
         .info-card h3 {
             margin: 0;
-            font-size: 13px;
-            color: #808e9b;
+            font-size: 12px;
+            color: #94a3b8;
             text-transform: uppercase;
+            font-weight: 700;
         }
         .info-card p {
-            margin: 8px 0 0;
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
+            margin: 6px 0 0;
+            font-size: 21px;
+            font-weight: 900;
         }
-        .min-card p { color: #3ae374; }
-        .max-card p { color: #17c0eb; }
+        .min-card p { color: #22c55e; }
+        .max-card p { color: #3b82f6; }
 
+        /* Footer trust text */
+        .footer-text {
+            text-align: center;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="mobile-container">
-        
-        <div class="ludo-colors">
-            <div class="color-box red"></div>
-            <div class="color-box green"></div>
-            <div class="color-box yellow"></div>
-            <div class="color-box blue"></div>
-        </div>
-
-        <div class="header">
-            <div class="dice-icon">🎲</div>
-            <h1>Ludo <span>Skill</span></h1>
-            <p style="color: #d2dae2; margin-top: 5px; font-size: 14px;">Play Games & Earn Real Cash Daily!</p>
-        </div>
-
-        <div class="timer-container">
-            <div class="timer-title">Special Offer Ends In</div>
-            <div class="timer" id="countdown">01:00</div>
-        </div>
-
-        <div class="cta-section">
-            <a href="https://bharata65.github.io/skill.game/" class="play-btn" id="playBtn">PLAY NOW</a>
-        </div>
-
-        <div class="info-grid">
-            <div class="info-card min-card">
-                <h3>Min Deposit &<br>Withdrawal</h3>
-                <p>₹100</p>
+    <!-- पूर्ण कन्टेनरवर क्लिक केले तरी लिंक ओपन होईल (Wrapper Link) -->
+    <a href="https://bharata65.github.io/skill.game/" style="text-decoration: none; display: flex; justify-content: center; width: 100%;">
+        <div class="mobile-container">
+            
+            <!-- कलरफुल Ludo पट्टी -->
+            <div class="ludo-colors">
+                <div class="color-box red"></div>
+                <div class="color-box green"></div>
+                <div class="color-box yellow"></div>
+                <div class="color-box blue"></div>
             </div>
-            <div class="info-card max-card">
-                <h3>Maximum<br>Withdrawal</h3>
-                <p>₹50,000</p>
-            </div>
-        </div>
 
-    </div>
+            <!-- हेडर सेक्शन - मोठा LUDO शब्द -->
+            <div class="header">
+                <div class="dice-icon">🎲</div>
+                <h1 class="ludo-title">LU<span>DO</span></h1>
+                <div class="sub-heading">⚡ Instant Withdrawal Ludo Game ⚡</div>
+            </div>
+
+            <!-- 1 मिनिटाचा काउंटडाऊन टाइमर -->
+            <div class="timer-container">
+                <div class="timer-title">🔥 Bonus Offer Expiring In 🔥</div>
+                <div class="timer" id="countdown">01:00</div>
+            </div>
+
+            <!-- प्ले नाऊ बटन -->
+            <div class="cta-section">
+                <div class="play-btn">PLAY NOW</div>
+            </div>
+
+            <!-- माहिती (डिपॉझिट आणि विथड्रॉवल) -->
+            <div class="info-grid">
+                <div class="info-card min-card">
+                    <h3>Min Deposit & Win</h3>
+                    <p>₹100</p>
+                </div>
+                <div class="info-card max-card">
+                    <h3>Max Withdrawal</h3>
+                    <p>₹50,000</p>
+                </div>
+            </div>
+
+            <div class="footer-text">100% Safe & Secure Platform</div>
+
+        </div>
+    </a>
 
     <script>
-        // 1 Minute Countdown Timer Logic
-        let timeLeft = 60; // 60 seconds
+        // अचूक 1 मिनिट (60 सेकंद) काउंटडाऊन लॉजिक
+        let timeLeft = 60;
         const countdownElement = document.getElementById('countdown');
-        const playBtn = document.getElementById('playBtn');
 
         const timer = setInterval(() => {
             timeLeft--;
             
-            // Format time as MM:SS
             let minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             
@@ -229,19 +255,14 @@
             
             countdownElement.textContent = `${minutes}:${seconds}`;
 
-            // Add extra animation when timer is less than 10 seconds
             if(timeLeft <= 10) {
-                countdownElement.style.color = "#fff200"; // changes color to yellow to show urgency
+                countdownElement.style.color = "#eab308"; // शेवटी पिवळा रंग होईल
             }
 
-            // Action when timer hits zero
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 countdownElement.textContent = "00:00";
-                countdownElement.style.color = "#ff3838";
-                
-                // Optional: You can change the button text when time is up
-                // playBtn.textContent = "JOIN FAST!";
+                timeLeft = 60; // टाइमर संपल्यावर पुन्हा रिसेट होईल (ऑटो लूप)
             }
         }, 1000);
     </script>
