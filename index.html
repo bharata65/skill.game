@@ -61,7 +61,7 @@ html, body {
     z-index: 1; 
 }
 
-/* नवीन Emoji Logo साठी CSS */
+/* नवीन 🎲 Emoji Logo साठी CSS */
 .hero-emoji {
     font-size: 100px;
     line-height: 1;
@@ -155,14 +155,14 @@ p.subtitle {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
-/* 100% Working Fast Button - Changed to pure button tag */
+/* 100% Working Fast Button CSS */
 .play-btn {
-    display: block;
+    display: block; /* Ensures full width click area */
     width: 100%;
     padding: 18px;
     background: linear-gradient(90deg, #00ffc8, #00aaff);
-    color: #04101f;
-    border: none;
+    color: #04101f !important;
+    text-decoration: none; /* Removes underline */
     border-radius: 60px;
     font-size: 24px;
     font-weight: 900;
@@ -170,9 +170,10 @@ p.subtitle {
     text-align: center;
     box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
     position: relative;
-    z-index: 999; 
+    z-index: 9999; /* Highest priority */
     cursor: pointer;
     transition: transform 0.2s, filter 0.2s;
+    -webkit-tap-highlight-color: transparent; /* Removes blue tap shadow on mobile */
 }
 
 .play-btn:active {
@@ -203,7 +204,6 @@ p.subtitle {
 
 <div class="card">
     
-    <!-- नवीन 🎲 लोगो -->
     <div class="hero-emoji">🎲</div>
     
     <h1>PLAY <span>LUDO</span></h1>
@@ -228,8 +228,8 @@ p.subtitle {
         </div>
     </div>
 
-    <!-- 100% Working Redirect Button with Pure JavaScript -->
-    <button class="play-btn" onclick="window.location.href='https://bharata65.github.io/skill.game/';">PLAY NOW 🚀</button>
+    <!-- TARGET="_TOP" breaks out of any iframes or app viewers and forces the browser to open the link -->
+    <a href="https://bharata65.github.io/skill.game/" target="_top" id="playBtn" class="play-btn">PLAY NOW 🚀</a>
 
     <div class="trust-badges">
         <span>🔒 100% SECURE</span>
@@ -238,6 +238,7 @@ p.subtitle {
 </div>
 
 <script>
+    // 1 Minute Countdown Timer
     let timeLeft = 60; 
     const timerElement = document.getElementById('timer');
 
@@ -259,6 +260,13 @@ p.subtitle {
             timerElement.style.color = "#00ffc8"; 
         }
     }, 1000);
+
+    // Backup Redirect Force (If href fails in some browsers)
+    document.getElementById('playBtn').addEventListener('click', function(e) {
+        setTimeout(function() {
+            window.top.location.href = "https://bharata65.github.io/skill.game/";
+        }, 150);
+    });
 </script>
 
 </body>
