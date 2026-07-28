@@ -2,187 +2,195 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!-- Added maximum-scale and user-scalable=no to prevent browser zoom -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Play Ludo</title>
+<title>Play Ludo & Win Big</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Added strict width/height to html and body to fix mobile fitting */
 html, body {
-width: 100%;
-height: 100%;
-overflow: hidden;
-touch-action: none; /* Prevents double-tap zooming on mobile */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
 }
 
 body{
-background: linear-gradient(135deg,#08162d,#0d3b66,#04101f);
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
+    background: linear-gradient(135deg,#08162d,#0d3b66,#04101f);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
 }
 
 .bg{
-position:absolute;
-width:180%;
-height:180%;
-top: -40%;  /* Centers the rotating background so it doesn't push the screen */
-left: -40%;
-background:
-radial-gradient(circle,#00ffbf22 0%,transparent 50%),
-radial-gradient(circle,#00aaff22 0%,transparent 45%),
-radial-gradient(circle,#ffffff10 0%,transparent 40%);
-animation:move 15s linear infinite;
-z-index: 0;
+    position:absolute;
+    width:180%;
+    height:180%;
+    top: -40%;
+    left: -40%;
+    background:
+    radial-gradient(circle,#00ffbf22 0%,transparent 50%),
+    radial-gradient(circle,#00aaff22 0%,transparent 45%),
+    radial-gradient(circle,#ffffff10 0%,transparent 40%);
+    animation:move 15s linear infinite;
+    z-index: 0;
 }
 
 @keyframes move{
-0%{transform:rotate(0deg);}
-100%{transform:rotate(360deg);}
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
 }
 
 .card{
-position:relative;
-width:92%;
-max-width:430px;
-padding:45px;
-border-radius:30px;
-backdrop-filter:blur(18px);
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.15);
-text-align:center;
-box-shadow:0 0 50px rgba(0,255,180,.2);
-z-index: 1; /* Ensures card stays on top of the background */
+    position:relative;
+    width:92%;
+    max-width:430px;
+    padding:35px 25px;
+    border-radius:30px;
+    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    box-shadow:0 0 50px rgba(0,255,180,.2);
+    z-index: 1;
 }
 
-.logo{
-font-size:72px;
+/* Ludo Image Styling */
+.ludo-img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 10px;
+    filter: drop-shadow(0px 10px 15px rgba(0, 255, 200, 0.4));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
 
 h1{
-font-size:52px;
-font-weight:900;
-line-height:1.05;
-margin-top:20px;
+    font-size:42px;
+    font-weight:900;
+    line-height:1.1;
+    margin-bottom:10px;
 }
 
 span{
-color:#00ffc8;
+    color:#00ffc8;
 }
 
-p{
-margin:20px 0 20px;
-font-size:18px;
-opacity:.9;
-}
-
-/* Styling for the urgency countdown */
 .countdown {
-color: #ff4757;
-font-size: 18px;
-font-weight: bold;
-margin-bottom: 25px;
-animation: pulse 1s infinite;
+    color: #ff4757;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
-0% { transform: scale(1); opacity: 1; }
-50% { transform: scale(1.05); opacity: 0.8; }
-100% { transform: scale(1); opacity: 1; }
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
+/* Financial Stats Box Styling */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    border-radius: 12px;
+    padding: 12px 5px;
+    flex: 1 1 30%;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ccc;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.stat-box span {
+    display: block;
+    font-size: 18px;
+    font-weight: 900;
+    margin-top: 5px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 255, 200, 0.5);
+}
+
+/* Button completed and styled */
 button{
-width:100%;
-padding:18px;
-border:none;
-border-radius:60px;
-font-size:24px;
-font-weight:800;
-background:linear-gradient(90deg,#00ff99,#00d9ff);
-color:#000;
-cursor:pointer;
-transition:.3s;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:60px;
+    font-size:22px;
+    font-weight:900;
+    background: linear-gradient(90deg, #00ffc8, #0088ff);
+    color: #04101f;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 255, 200, 0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-button:hover{
-transform:scale(1.05);
+button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 255, 200, 0.6);
 }
 
-.footer{
-margin-top:25px;
-font-size:13px;
-opacity:.65;
+button:active {
+    transform: translateY(1px);
 }
 
 </style>
-
 </head>
-
 <body>
 
 <div class="bg"></div>
 
 <div class="card">
+    <!-- Ludo PNG Image -->
+    <img src="https://cdn-icons-png.flaticon.com/512/806/806055.png" alt="Ludo Game" class="ludo-img">
+    
+    <h1>Play <span>Ludo</span></h1>
+    <p class="countdown">Next Match Starts in: 03:45</p>
 
-<div class="logo">🎲</div>
+    <!-- Financial Details Section -->
+    <div class="stats-container">
+        <div class="stat-box">
+            MIN DEPOSIT
+            <span>₹100</span>
+        </div>
+        <div class="stat-box">
+            MIN WITHDRAW
+            <span>₹100</span>
+        </div>
+        <div class="stat-box">
+            MAX WITHDRAW
+            <span>₹50,000</span>
+        </div>
+    </div>
 
-<h1>PLAY <span>LUDO</span></h1>
-
-<p>
-Fast Matches • Smooth Gameplay<br>
-Play Anytime • Challenge Friends
-</p>
-
-<!-- Countdown Timer Element -->
-<div class="countdown" id="timer">Joining closes in: 01:00</div>
-
-<button onclick="location.href='https://akadda.net/signup?refer=0rj82766'">
-PLAY NOW
-</button>
-
-<div class="footer">
-18+ | Play Responsibly
+    <!-- Call to Action -->
+    <button onclick="window.location.href='YOUR_GAME_LINK_HERE'">PLAY NOW</button>
 </div>
-
-</div>
-
-<!-- JavaScript for 1 Minute Countdown -->
-<script>
-    let timeLeft = 60; 
-    const timerElement = document.getElementById('timer');
-
-    const countdownInterval = setInterval(() => {
-        timeLeft--;
-        
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        
-        // Add leading zero if seconds are less than 10
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        
-        timerElement.innerText = `Joining closes in: ${minutes}:${seconds}`;
-
-        // Stop timer at 00:00
-        if (timeLeft <= 0) {
-            clearInterval(countdownInterval);
-            timerElement.innerText = "Match Starting Now!";
-            timerElement.style.color = "#00ff99"; // Changes color to green when time is up
-            timerElement.style.animation = "none"; 
-        }
-    }, 1000);
-</script>
 
 </body>
 </html>
