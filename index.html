@@ -1,281 +1,405 @@
 <!DOCTYPE html>
-<html lang="mr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUDO - Play & Win Cash</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo - Play, Enjoy, Win</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* मोबाईलवर क्लिक केल्यावर येणारा निळा रंग काढण्यासाठी */
-        }
+        /* Custom CSS styles aani animations sathi */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0b0f19;
-            margin: 0;
-            padding: 0;
+            background-color: #020617; /* Dark background */
+            background-image: radial-gradient(circle at center, #1e3a8a 0%, #020617 80%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-stars {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* 3D Text Style LUDO sathi */
+        .ludo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Mobile Container Perfect Fitting - Made Entirely Clickable */
-        .mobile-container {
-            max-width: 480px;
-            width: 100%;
-            background: radial-gradient(circle at top, #1e1b4b, #0b0f19);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+            gap: 2px;
+            margin-bottom: -15px;
+            z-index: 10;
             position: relative;
-            overflow: hidden;
-            cursor: pointer; /* पूर्ण स्क्रीन क्लिकेबल असल्याचे दाखवते */
+        }
+
+        .ludo-letter {
+            text-transform: uppercase;
+            -webkit-text-stroke: 2px #fff;
+            text-shadow: 
+                0px 3px 0px #fff,
+                0px 8px 0px #000,
+                0px 15px 10px rgba(0,0,0,0.7);
+            position: relative;
+        }
+
+        .letter-L { color: #ff0000; -webkit-text-stroke: 2px #ffb3b3; text-shadow: 0px 3px 0px #cc0000, 0px 6px 0px #800000, 0px 15px 10px rgba(0,0,0,0.7); }
+        .letter-U { color: #0088ff; -webkit-text-stroke: 2px #b3ddff; text-shadow: 0px 3px 0px #0066cc, 0px 6px 0px #003366, 0px 15px 10px rgba(0,0,0,0.7); }
+        .letter-D { color: #00cc00; -webkit-text-stroke: 2px #b3ffb3; text-shadow: 0px 3px 0px #009900, 0px 6px 0px #004d00, 0px 15px 10px rgba(0,0,0,0.7); }
+        .letter-O { color: #ffcc00; -webkit-text-stroke: 2px #ffebb3; text-shadow: 0px 3px 0px #cca300, 0px 6px 0px #806600, 0px 15px 10px rgba(0,0,0,0.7); }
+
+        /* Ribbon Style */
+        .ribbon {
+            background: linear-gradient(to bottom, #d90000, #800000);
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 5;
         }
         
-        .mobile-container:active {
-            transform: scale(0.99); /* टच केल्यावर थोडासा इफेक्ट */
-            transition: transform 0.1s;
+        /* Play Now Button Style */
+        .btn-play-now {
+            background: linear-gradient(to bottom, #00ff00, #008000);
+            border: 3px solid #b3ffb3;
+            box-shadow: 
+                inset 0px 5px 10px rgba(255,255,255,0.5),
+                0px 8px 0px #004d00,
+                0px 15px 20px rgba(0,0,0,0.6);
+            text-shadow: 1px 2px 2px rgba(0,0,0,0.5);
+            transition: all 0.1s;
+            animation: pulse 2s infinite;
         }
 
-        /* Ludo Colors Top Strip */
-        .ludo-colors {
-            display: flex;
-            height: 8px;
-            width: 100%;
+        .btn-play-now:active {
+            transform: translateY(8px);
+            box-shadow: 
+                inset 0px 2px 5px rgba(255,255,255,0.5),
+                0px 0px 0px #004d00,
+                0px 5px 10px rgba(0,0,0,0.6);
         }
-        .color-box { flex: 1; }
-        .red { background: #ef4444; }
-        .green { background: #22c55e; }
-        .yellow { background: #eab308; }
-        .blue { background: #3b82f6; }
 
-        /* Header Section - LUDO Word Extra Large */
-        .header {
-            text-align: center;
-            padding: 25px 15px 10px;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
         }
-        .ludo-title {
-            color: #ffffff;
-            font-size: 55px;
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(234, 179, 8, 0.6), 3px 3px 0px #ef4444;
-        }
-        .ludo-title span {
-            color: #eab308;
-            text-shadow: 0 0 20px rgba(234, 179, 8, 0.8), 3px 3px 0px #3b82f6;
+
+        /* Ludo Board Placeholder CSS Drawing */
+        .ludo-board-css {
+            background: #fff;
+            border: 10px solid #5a3a22;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.5);
+            transform: perspective(800px) rotateX(15deg);
+            aspect-ratio: 1/1;
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            grid-template-rows: 2fr 1fr 2fr;
+            gap: 2px;
+            padding: 5px;
+            background-color: #eee;
+            position: relative;
         }
         
-        .sub-heading {
-            color: #94a3b8;
-            font-size: 15px;
-            margin-top: 8px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+        .ludo-home { border: 2px solid #000; border-radius: 5px; padding: 10px; display: flex; align-items: center; justify-content: center; }
+        .ludo-home-inner { width: 70%; height: 70%; background: #fff; border-radius: 5px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .ludo-home-inner span { background: currentColor; border-radius: 50%; width: 100%; height: 100%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.5); }
+        
+        .ludo-red { background-color: #ff0000; }
+        .ludo-green { background-color: #00cc00; }
+        .ludo-blue { background-color: #0088ff; }
+        .ludo-yellow { background-color: #ffcc00; }
+
+        .ludo-path { display: grid; background: #fff; border: 1px solid #ccc; }
+        .ludo-path-v { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(6, 1fr); gap: 1px; background: #999; }
+        .ludo-path-h { grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1px; background: #999; }
+        .path-cell { background: #fff; }
+        
+        .center-home {
+            width: 0; height: 0; 
+            border-left: 30px solid #00cc00;
+            border-right: 30px solid #0088ff;
+            border-top: 30px solid #ff0000;
+            border-bottom: 30px solid #ffcc00;
+            margin: auto;
         }
 
-        /* Dice Bounce Animation */
-        .dice-icon {
-            font-size: 50px;
-            margin: 5px 0;
-            animation: bounce 1.8s infinite ease-in-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(10deg); }
-        }
-
-        /* 1 Min Countdown Timer Box */
-        .timer-container {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1.5px dashed rgba(234, 179, 8, 0.4);
-            border-radius: 16px;
-            margin: 10px 20px;
-            padding: 12px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        .timer-title {
-            color: #cbd5e1;
-            font-size: 13px;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        .timer {
-            font-size: 38px;
-            font-weight: 900;
-            color: #ef4444;
-            letter-spacing: 2px;
-            text-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
-        }
-
-        /* PLAY NOW Big Button */
-        .cta-section {
-            text-align: center;
-            padding: 15px 20px;
-        }
-        .play-btn {
-            display: block;
-            width: 100%;
-            padding: 20px 0;
-            font-size: 28px;
-            font-weight: 900;
-            color: #ffffff;
-            background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
-            border: none;
-            border-radius: 50px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.6);
-            animation: pulse-animation 1.5s infinite;
-            cursor: pointer;
-            letter-spacing: 1px;
-        }
-
-        /* Button Click Effect */
-        .play-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.8);
-        }
-
-        @keyframes pulse-animation {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8); }
-            70% { transform: scale(1.04); box-shadow: 0 0 0 18px rgba(239, 68, 68, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
-        /* Info Cards (Deposit & Withdrawal) */
-        .info-grid {
-            display: flex;
-            gap: 12px;
-            padding: 0 20px 20px;
-        }
+        /* Info Cards */
         .info-card {
-            flex: 1;
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 14px 10px;
-            border-radius: 14px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(145deg, #0f172a, #020617);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border-width: 2px;
+            border-style: solid;
         }
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
-        }
-        .min-card::before { background: #22c55e; }
-        .max-card::before { background: #3b82f6; }
+        .border-green-card { border-color: #008000; box-shadow: 0 0 10px rgba(0,128,0,0.3); }
+        .border-blue-card { border-color: #004080; box-shadow: 0 0 10px rgba(0,64,128,0.3); }
+        .border-gold-card { border-color: #b38f00; box-shadow: 0 0 10px rgba(179,143,0,0.3); }
         
-        .info-card h3 {
-            margin: 0;
-            font-size: 12px;
-            color: #94a3b8;
-            text-transform: uppercase;
-            font-weight: 700;
+        /* Floating Pawns/Dice (Decorative) */
+        .floating-element {
+            position: absolute;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+            z-index: 20;
+            animation: float 4s ease-in-out infinite;
         }
-        .info-card p {
-            margin: 6px 0 0;
-            font-size: 21px;
-            font-weight: 900;
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
-        .min-card p { color: #22c55e; }
-        .max-card p { color: #3b82f6; }
 
-        /* Footer trust text */
-        .footer-text {
-            text-align: center;
-            color: #64748b;
-            font-size: 11px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
     </style>
 </head>
-<body>
+<body class="relative flex justify-center min-h-screen">
+    <div class="bg-stars"></div>
 
-    <!-- इथे JS चा 'onclick' लावला आहे, ज्यामुळे संपूर्ण स्क्रीन क्लिकेबल झाली आहे -->
-    <div class="mobile-container" onclick="window.location.href='https://bharata65.github.io/skill.game/'">
+    <!-- Mukhya Mobile Container -->
+    <div class="relative w-full max-w-md w-full flex flex-col items-center px-4 py-6 z-10">
         
-        <!-- कलरफुल Ludo पट्टी -->
-        <div class="ludo-colors">
-            <div class="color-box red"></div>
-            <div class="color-box green"></div>
-            <div class="color-box yellow"></div>
-            <div class="color-box blue"></div>
+        <!-- Header LUDO Text -->
+        <div class="ludo-title mt-4">
+            <span class="ludo-letter letter-L">L</span>
+            <span class="ludo-letter letter-U">U</span>
+            <span class="ludo-letter letter-D">D</span>
+            <span class="ludo-letter letter-O">O</span>
         </div>
 
-        <!-- हेडर सेक्शन - मोठा LUDO शब्द -->
-        <div class="header">
-            <div class="dice-icon">🎲</div>
-            <h1 class="ludo-title">LU<span>DO</span></h1>
-            <div class="sub-heading">⚡ Instant Withdrawal Ludo Game ⚡</div>
+        <!-- Ribbon -->
+        <div class="ribbon px-8 py-1 mt-2 mb-4">
+            <h2 class="text-white text-xl font-bold tracking-widest text-center" style="font-family: 'Montserrat', sans-serif;">
+                PLAY &bull; ENJOY &bull; WIN
+            </h2>
         </div>
 
-        <!-- 1 मिनिटाचा काउंटडाऊन टाइमर -->
-        <div class="timer-container">
-            <div class="timer-title">🔥 Bonus Offer Expiring In 🔥</div>
-            <div class="timer" id="countdown">01:00</div>
+        <!-- Subtitles -->
+        <p class="text-center text-white font-semibold text-lg leading-tight mb-1">
+            Play Ludo Online & Win Real Rewards
+        </p>
+        <p class="text-center text-yellow-400 font-bold text-md mb-4">
+            Real Players. Real Fun. Real Cash.
+        </p>
+
+        <!-- Timer Section (Joining sathi urlela vel) -->
+        <div class="bg-red-600 border-2 border-red-400 rounded-full px-6 py-2 mb-4 shadow-[0_0_15px_rgba(220,38,38,0.7)] animate-pulse">
+            <p class="text-white font-bold text-center text-lg flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span id="timerText">Joining sathi urlela vel: <span id="timeDisplay">01:00</span></span>
+            </p>
         </div>
 
-        <!-- प्ले नाऊ बटन - इथेही JS चा 'onclick' लावला आहे -->
-        <div class="cta-section">
-            <button class="play-btn" onclick="window.location.href='https://bharata65.github.io/skill.game/'">PLAY NOW</button>
-        </div>
-
-        <!-- माहिती (डिपॉझिट आणि विथड्रॉवल) -->
-        <div class="info-grid">
-            <div class="info-card min-card">
-                <h3>Min Deposit & Win</h3>
-                <p>₹100</p>
+        <!-- Ludo Board / Center Image -->
+        <div class="w-full relative px-2 mb-6 mt-2">
+            <!-- Decorative Dice -->
+            <div class="floating-element" style="top: -60px; left: -10px; width: 60px;">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="80" height="80" rx="20" fill="white" stroke="#ccc" stroke-width="2"/>
+                    <circle cx="30" cy="30" r="10" fill="black"/>
+                    <circle cx="70" cy="70" r="10" fill="black"/>
+                </svg>
             </div>
-            <div class="info-card max-card">
-                <h3>Max Withdrawal</h3>
-                <p>₹50,000</p>
+            <div class="floating-element" style="top: -40px; right: -10px; width: 50px; animation-delay: 1s;">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(25deg);">
+                    <rect x="10" y="10" width="80" height="80" rx="20" fill="white" stroke="#ccc" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="10" fill="black"/>
+                </svg>
+            </div>
+
+            <!-- CSS Ludo Board -->
+            <div class="ludo-board-css w-full">
+                <!-- Top Left: Red -->
+                <div class="ludo-home ludo-red">
+                    <div class="ludo-home-inner text-red-500">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <!-- Top Mid: Vertical Path -->
+                <div class="ludo-path ludo-path-v">
+                    <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell ludo-blue"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
+                </div>
+                <!-- Top Right: Blue -->
+                <div class="ludo-home ludo-blue">
+                    <div class="ludo-home-inner text-blue-500">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                
+                <!-- Mid Left: Horizontal Path -->
+                <div class="ludo-path ludo-path-h">
+                    <div class="path-cell"></div><div class="path-cell ludo-red"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div>
+                    <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                </div>
+                <!-- Center Home -->
+                <div class="flex items-center justify-center bg-gray-200">
+                    <div class="center-home"></div>
+                </div>
+                <!-- Mid Right: Horizontal Path -->
+                <div class="ludo-path ludo-path-h">
+                    <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                    <div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell ludo-yellow"></div><div class="path-cell"></div>
+                </div>
+
+                <!-- Bottom Left: Green -->
+                <div class="ludo-home ludo-green">
+                    <div class="ludo-home-inner text-green-500">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <!-- Bottom Mid: Vertical Path -->
+                <div class="ludo-path ludo-path-v">
+                    <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
+                    <div class="path-cell ludo-green"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
+                    <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                </div>
+                <!-- Bottom Right: Yellow -->
+                <div class="ludo-home ludo-yellow">
+                    <div class="ludo-home-inner text-yellow-500">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="footer-text">100% Safe & Secure Platform</div>
+        <!-- Mahiti Cards (Deposit/Withdrawal) -->
+        <div class="grid grid-cols-3 gap-2 w-full mb-6">
+            <!-- Min Deposit -->
+            <div class="info-card border-green-card rounded-xl p-2 flex flex-col items-center justify-center text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500 mb-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm11 4a2 2 0 10-4 0 2 2 0 004 0zM7 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-[10px] font-bold text-gray-300">MINIMUM<br>DEPOSIT</span>
+                <span class="text-xl font-bold text-green-400 mt-1">₹100</span>
+            </div>
+            
+            <!-- Min Withdrawal -->
+            <div class="info-card border-blue-card rounded-xl p-2 flex flex-col items-center justify-center text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span class="text-[10px] font-bold text-gray-300">MINIMUM<br>WITHDRAWAL</span>
+                <span class="text-xl font-bold text-blue-300 mt-1">₹100</span>
+            </div>
+
+            <!-- Max Withdrawal -->
+            <div class="info-card border-gold-card rounded-xl p-2 flex flex-col items-center justify-center text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-500 mb-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-[10px] font-bold text-gray-300">MAXIMUM<br>WITHDRAWAL</span>
+                <span class="text-xl font-bold text-yellow-400 mt-1">₹50,000</span>
+            </div>
+        </div>
+
+        <!-- Play Now Button (Click kelyavar redirect hoil) -->
+        <button onclick="startGame()" class="btn-play-now w-full rounded-full py-4 px-6 text-white text-5xl font-black mb-6 cursor-pointer" style="font-family: 'Montserrat', sans-serif;">
+            PLAY NOW
+        </button>
+
+        <!-- Footer Vaishishtye (Features Grid) -->
+        <div class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 flex justify-between items-center mb-4">
+            <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                </svg>
+                <div class="text-left leading-tight">
+                    <div class="text-xs font-bold text-white">PLAY ONLINE</div>
+                    <div class="text-[9px] text-gray-400">WITH REAL PLAYERS</div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <div class="text-left leading-tight">
+                    <div class="text-xs font-bold text-white">100% SAFE</div>
+                    <div class="text-[9px] text-gray-400">SECURE GAMES</div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" />
+                </svg>
+                <div class="text-left leading-tight">
+                    <div class="text-xs font-bold text-white">WIN BIG</div>
+                    <div class="text-[9px] text-gray-400">REAL CASH REWARDS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Tags -->
+        <div class="text-center w-full pb-4">
+            <span class="text-yellow-500 text-xs font-bold flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                FAIR PLAY &nbsp;|&nbsp; <span class="text-green-500">SAFE & SECURE</span> &nbsp;|&nbsp; <span class="text-yellow-500">INSTANT WITHDRAWALS</span>
+            </span>
+        </div>
 
     </div>
 
+    <!-- JavaScript functionality (Timer aani Redirection) -->
     <script>
-        // अचूक 1 मिनिट (60 सेकंद) काउंटडाऊन लॉजिक
-        let timeLeft = 60;
-        const countdownElement = document.getElementById('countdown');
+        // 1 Minute Timer Logic
+        let timeLeft = 60; // 60 seconds (1 minute)
+        const timeDisplay = document.getElementById('timeDisplay');
+        const timerText = document.getElementById('timerText');
 
-        const timer = setInterval(() => {
+        const countdown = setInterval(() => {
             timeLeft--;
             
+            // Minutes aani seconds calculate karane
             let minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-            
-            countdownElement.textContent = `${minutes}:${seconds}`;
+            // Format 00:00 asa thevne
+            let formattedTime = `0${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            timeDisplay.textContent = formattedTime;
 
-            if(timeLeft <= 10) {
-                countdownElement.style.color = "#eab308"; // शेवटी पिवळा रंग होईल
-            }
-
+            // Timer samplayvar kay karayche te
             if (timeLeft <= 0) {
-                clearInterval(timer);
-                countdownElement.textContent = "00:00";
-                timeLeft = 60; // टाइमर संपल्यावर पुन्हा रिसेट होईल (ऑटो लूप)
+                clearInterval(countdown);
+                timerText.innerHTML = "Ata join kara! Vel sampli aahe.";
             }
         }, 1000);
-    </script>
 
+        // Play Now Button click kelyavar redirect karane
+        function startGame() {
+            window.location.href = 'https://bharata65.github.io/skill.game/';
+        }
+    </script>
 </body>
 </html>
+
