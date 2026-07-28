@@ -8,6 +8,7 @@
     <style>
         * {
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* मोबाईलवर क्लिक केल्यावर येणारा निळा रंग काढण्यासाठी */
         }
         body {
             font-family: 'Poppins', sans-serif;
@@ -20,7 +21,7 @@
             min-height: 100vh;
         }
 
-        /* Mobile Container Perfect Fitting */
+        /* Mobile Container Perfect Fitting - Made Entirely Clickable */
         .mobile-container {
             max-width: 480px;
             width: 100%;
@@ -32,6 +33,12 @@
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
             position: relative;
             overflow: hidden;
+            cursor: pointer; /* पूर्ण स्क्रीन क्लिकेबल असल्याचे दाखवते */
+        }
+        
+        .mobile-container:active {
+            transform: scale(0.99); /* टच केल्यावर थोडासा इफेक्ट */
+            transition: transform 0.1s;
         }
 
         /* Ludo Colors Top Strip */
@@ -126,12 +133,17 @@
             background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
             border: none;
             border-radius: 50px;
-            text-decoration: none;
             text-transform: uppercase;
             box-shadow: 0 10px 30px rgba(239, 68, 68, 0.6);
             animation: pulse-animation 1.5s infinite;
             cursor: pointer;
             letter-spacing: 1px;
+        }
+
+        /* Button Click Effect */
+        .play-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.8);
         }
 
         @keyframes pulse-animation {
@@ -192,52 +204,50 @@
 </head>
 <body>
 
-    <!-- पूर्ण कन्टेनरवर क्लिक केले तरी लिंक ओपन होईल (Wrapper Link) -->
-    <a href="https://bharata65.github.io/skill.game/" style="text-decoration: none; display: flex; justify-content: center; width: 100%;">
-        <div class="mobile-container">
-            
-            <!-- कलरफुल Ludo पट्टी -->
-            <div class="ludo-colors">
-                <div class="color-box red"></div>
-                <div class="color-box green"></div>
-                <div class="color-box yellow"></div>
-                <div class="color-box blue"></div>
-            </div>
-
-            <!-- हेडर सेक्शन - मोठा LUDO शब्द -->
-            <div class="header">
-                <div class="dice-icon">🎲</div>
-                <h1 class="ludo-title">LU<span>DO</span></h1>
-                <div class="sub-heading">⚡ Instant Withdrawal Ludo Game ⚡</div>
-            </div>
-
-            <!-- 1 मिनिटाचा काउंटडाऊन टाइमर -->
-            <div class="timer-container">
-                <div class="timer-title">🔥 Bonus Offer Expiring In 🔥</div>
-                <div class="timer" id="countdown">01:00</div>
-            </div>
-
-            <!-- प्ले नाऊ बटन -->
-            <div class="cta-section">
-                <div class="play-btn">PLAY NOW</div>
-            </div>
-
-            <!-- माहिती (डिपॉझिट आणि विथड्रॉवल) -->
-            <div class="info-grid">
-                <div class="info-card min-card">
-                    <h3>Min Deposit & Win</h3>
-                    <p>₹100</p>
-                </div>
-                <div class="info-card max-card">
-                    <h3>Max Withdrawal</h3>
-                    <p>₹50,000</p>
-                </div>
-            </div>
-
-            <div class="footer-text">100% Safe & Secure Platform</div>
-
+    <!-- इथे JS चा 'onclick' लावला आहे, ज्यामुळे संपूर्ण स्क्रीन क्लिकेबल झाली आहे -->
+    <div class="mobile-container" onclick="window.location.href='https://bharata65.github.io/skill.game/'">
+        
+        <!-- कलरफुल Ludo पट्टी -->
+        <div class="ludo-colors">
+            <div class="color-box red"></div>
+            <div class="color-box green"></div>
+            <div class="color-box yellow"></div>
+            <div class="color-box blue"></div>
         </div>
-    </a>
+
+        <!-- हेडर सेक्शन - मोठा LUDO शब्द -->
+        <div class="header">
+            <div class="dice-icon">🎲</div>
+            <h1 class="ludo-title">LU<span>DO</span></h1>
+            <div class="sub-heading">⚡ Instant Withdrawal Ludo Game ⚡</div>
+        </div>
+
+        <!-- 1 मिनिटाचा काउंटडाऊन टाइमर -->
+        <div class="timer-container">
+            <div class="timer-title">🔥 Bonus Offer Expiring In 🔥</div>
+            <div class="timer" id="countdown">01:00</div>
+        </div>
+
+        <!-- प्ले नाऊ बटन - इथेही JS चा 'onclick' लावला आहे -->
+        <div class="cta-section">
+            <button class="play-btn" onclick="window.location.href='https://bharata65.github.io/skill.game/'">PLAY NOW</button>
+        </div>
+
+        <!-- माहिती (डिपॉझिट आणि विथड्रॉवल) -->
+        <div class="info-grid">
+            <div class="info-card min-card">
+                <h3>Min Deposit & Win</h3>
+                <p>₹100</p>
+            </div>
+            <div class="info-card max-card">
+                <h3>Max Withdrawal</h3>
+                <p>₹50,000</p>
+            </div>
+        </div>
+
+        <div class="footer-text">100% Safe & Secure Platform</div>
+
+    </div>
 
     <script>
         // अचूक 1 मिनिट (60 सेकंद) काउंटडाऊन लॉजिक
