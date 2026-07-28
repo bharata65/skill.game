@@ -3,97 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Play Ludo & Win Big</title>
+<title>Play Ludo & Win</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
 html, body {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
-    touch-action: none;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #08162d, #0d3b66, #04101f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow-x: hidden;
+    touch-action: pan-y; /* Allows vertical scrolling if needed on small screens */
 }
 
-body{
-    background: linear-gradient(135deg,#08162d,#0d3b66,#04101f);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-}
-
-.bg{
-    position:absolute;
-    width:180%;
-    height:180%;
-    top: -40%;
+.bg {
+    position: fixed; /* Fixed so it doesn't break scrolling */
+    width: 180%;
+    height: 180%;
+    top: -40%;  
     left: -40%;
     background:
-    radial-gradient(circle,#00ffbf22 0%,transparent 50%),
-    radial-gradient(circle,#00aaff22 0%,transparent 45%),
-    radial-gradient(circle,#ffffff10 0%,transparent 40%);
-    animation:move 15s linear infinite;
+        radial-gradient(circle, #00ffbf22 0%, transparent 50%),
+        radial-gradient(circle, #00aaff22 0%, transparent 45%),
+        radial-gradient(circle, #ffffff10 0%, transparent 40%);
+    animation: move 15s linear infinite;
     z-index: 0;
 }
 
-@keyframes move{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
+@keyframes move {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.card{
-    position:relative;
-    width:92%;
-    max-width:430px;
-    padding:35px 25px;
-    border-radius:30px;
-    backdrop-filter:blur(18px);
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    text-align:center;
-    box-shadow:0 0 50px rgba(0,255,180,.2);
-    z-index: 1;
+.card {
+    position: relative;
+    width: 92%;
+    max-width: 430px;
+    padding: 35px 25px;
+    margin: 20px 0;
+    border-radius: 30px;
+    backdrop-filter: blur(18px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 255, 180, 0.2);
+    z-index: 1; 
 }
 
 /* Ludo Image Styling */
-.ludo-img {
-    width: 120px;
-    height: auto;
-    margin-bottom: 10px;
-    filter: drop-shadow(0px 10px 15px rgba(0, 255, 200, 0.4));
+.hero-image {
+    width: 160px;
+    margin: -10px auto 15px;
+    display: block;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));
     animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
 }
 
-h1{
-    font-size:42px;
-    font-weight:900;
-    line-height:1.1;
-    margin-bottom:10px;
+h1 {
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1.1;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
-span{
-    color:#00ffc8;
+h1 span {
+    color: #00ffc8;
+    text-shadow: 0 0 15px rgba(0, 255, 200, 0.6);
+}
+
+p.subtitle {
+    margin: 15px 0 20px;
+    font-size: 16px;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* Countdown Timer */
+.countdown-box {
+    background: rgba(255, 71, 87, 0.15);
+    border: 1px solid #ff4757;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 25px;
 }
 
 .countdown {
     color: #ff4757;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 900;
     animation: pulse 1s infinite;
 }
 
@@ -103,62 +116,66 @@ span{
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Financial Stats Box Styling */
-.stats-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
+/* Payment Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     margin-bottom: 25px;
 }
 
-.stat-box {
+.info-item {
     background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(0, 255, 200, 0.3);
-    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
     padding: 12px 5px;
-    flex: 1 1 30%;
-    font-size: 11px;
-    font-weight: 700;
-    color: #ccc;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
 
-.stat-box span {
-    display: block;
-    font-size: 18px;
-    font-weight: 900;
-    margin-top: 5px;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(0, 255, 200, 0.5);
+.info-item.full-width {
+    grid-column: span 2;
+    background: linear-gradient(90deg, rgba(255,215,0,0.1), rgba(255,215,0,0.05));
+    border-color: rgba(255, 215, 0, 0.3);
 }
 
-/* Button completed and styled */
-button{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:60px;
-    font-size:22px;
-    font-weight:900;
-    background: linear-gradient(90deg, #00ffc8, #0088ff);
-    color: #04101f;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 255, 200, 0.4);
-    transition: all 0.3s ease;
+.info-title {
+    font-size: 12px;
+    color: #a0aec0;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: 700;
 }
 
-button:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 255, 200, 0.6);
+.info-amount {
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffffff;
+    margin-top: 5px;
+}
+
+.info-item.full-width .info-amount {
+    color: #ffd700; /* Gold color for max withdrawal */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Action Button */
+button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(90deg, #00ffc8, #00aaff);
+    color: #04101f;
+    border: none;
+    border-radius: 60px;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:active {
-    transform: translateY(1px);
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(0, 255, 200, 0.3);
 }
-
 </style>
 </head>
 <body>
@@ -166,31 +183,61 @@ button:active {
 <div class="bg"></div>
 
 <div class="card">
-    <!-- Ludo PNG Image -->
-    <img src="https://cdn-icons-png.flaticon.com/512/806/806055.png" alt="Ludo Game" class="ludo-img">
     
-    <h1>Play <span>Ludo</span></h1>
-    <p class="countdown">Next Match Starts in: 03:45</p>
+    <!-- इथे तू तुझी Ludo Board किंवा Dice ची PNG टाकू शकतोस. सध्या मी एक ऑनलाइन Dice PNG वापरली आहे. -->
+    <img src="https://cdn-icons-png.flaticon.com/512/806/806055.png" alt="Ludo Dice" class="hero-image">
+    
+    <h1>PLAY <span>LUDO</span></h1>
+    <p class="subtitle">Show Your Skills & Win Cash!</p>
 
-    <!-- Financial Details Section -->
-    <div class="stats-container">
-        <div class="stat-box">
-            MIN DEPOSIT
-            <span>₹100</span>
+    <div class="countdown-box">
+        <div class="countdown" id="timer">Offer Ends In: 01:00</div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-item">
+            <div class="info-title">Min Deposit</div>
+            <div class="info-amount">₹100</div>
         </div>
-        <div class="stat-box">
-            MIN WITHDRAW
-            <span>₹100</span>
+        <div class="info-item">
+            <div class="info-title">Min Withdraw</div>
+            <div class="info-amount">₹100</div>
         </div>
-        <div class="stat-box">
-            MAX WITHDRAW
-            <span>₹50,000</span>
+        <div class="info-item full-width">
+            <div class="info-title">Maximum Withdrawal</div>
+            <div class="info-amount">₹50,000</div>
         </div>
     </div>
 
-    <!-- Call to Action -->
-    <button onclick="window.location.href='YOUR_GAME_LINK_HERE'">PLAY NOW</button>
+    <button onclick="window.location.href='#'">PLAY NOW 🚀</button>
 </div>
+
+<script>
+    // 1 Minute Countdown Timer Logic
+    let timeLeft = 60; 
+    const timerElement = document.getElementById('timer');
+
+    const countdownInterval = setInterval(() => {
+        timeLeft--;
+        
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        
+        // Add leading zero if seconds are less than 10
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        timerElement.innerHTML = `Offer Ends In: 0${minutes}:${seconds}`;
+
+        // Stop timer when it reaches 0
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            timerElement.innerHTML = "Hurry Up! Join Now";
+            timerElement.style.color = "#00ffc8"; // Changes color when expired
+        }
+    }, 1000);
+</script>
 
 </body>
 </html>
