@@ -2,264 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ludo - Play, Enjoy, Win</title>
-    <!-- Tailwind CSS CDN -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APNA LUDO - Daily Championship</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(34, 197, 94, 0.8); }
         }
-        html, body {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden; /* Scroll complete band kel aahe */
-            font-family: 'Poppins', sans-serif;
-            background-color: #020617;
-            background-image: radial-gradient(circle at center, #1e3a8a 0%, #020617 90%);
-            color: white;
-        }
-
-        /* 3D LUDO Title */
-        .ludo-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 900;
-            line-height: 1;
-            display: flex;
-            justify-content: center;
-            gap: 2px;
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.6));
-        }
-
-        .ludo-letter {
-            text-transform: uppercase;
-        }
-        .letter-L { color: #ff0000; -webkit-text-stroke: 1.5px #ffb3b3; text-shadow: 0px 3px 0px #cc0000, 0px 6px 0px #800000; }
-        .letter-U { color: #0088ff; -webkit-text-stroke: 1.5px #b3ddff; text-shadow: 0px 3px 0px #0066cc, 0px 6px 0px #003366; }
-        .letter-D { color: #00cc00; -webkit-text-stroke: 1.5px #b3ffb3; text-shadow: 0px 3px 0px #009900, 0px 6px 0px #004d00; }
-        .letter-O { color: #ffcc00; -webkit-text-stroke: 1.5px #ffebb3; text-shadow: 0px 3px 0px #cca300, 0px 6px 0px #806600; }
-
-        /* Ribbon */
-        .ribbon {
-            background: linear-gradient(to bottom, #d90000, #800000);
-            border: 1.5px solid #ffcc00;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Play Now Button */
-        .btn-play-now {
-            background: linear-gradient(to bottom, #00ff00, #008000);
-            border: 3px solid #b3ffb3;
-            box-shadow: 
-                inset 0px 4px 8px rgba(255,255,255,0.5),
-                0px 6px 0px #004d00,
-                0px 10px 15px rgba(0,0,0,0.6);
-            text-shadow: 1px 2px 2px rgba(0,0,0,0.5);
-            transition: all 0.1s ease;
-            animation: pulse 1.5s infinite;
-        }
-
-        .btn-play-now:active {
-            transform: translateY(6px);
-            box-shadow: 
-                inset 0px 2px 4px rgba(255,255,255,0.5),
-                0px 0px 0px #004d00,
-                0px 3px 5px rgba(0,0,0,0.6);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-
-        /* Compact Ludo Board */
-        .ludo-board-css {
-            background: #fff;
-            border: 6px solid #5a3a22;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-            width: 170px;
-            height: 170px;
-            display: grid;
-            grid-template-columns: 2fr 1fr 2fr;
-            grid-template-rows: 2fr 1fr 2fr;
-            gap: 1px;
-            background-color: #ccc;
-            transform: perspective(600px) rotateX(10deg);
-        }
-        
-        .ludo-home { display: flex; align-items: center; justify-content: center; padding: 4px; }
-        .ludo-home-inner { width: 70%; height: 70%; background: #fff; border-radius: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; }
-        .ludo-home-inner span { background: currentColor; border-radius: 50%; }
-        
-        .ludo-red { background-color: #ff0000; color: #ff0000; }
-        .ludo-green { background-color: #00cc00; color: #00cc00; }
-        .ludo-blue { background-color: #0088ff; color: #0088ff; }
-        .ludo-yellow { background-color: #ffcc00; color: #ffcc00; }
-
-        .ludo-path { display: grid; background: #fff; }
-        .ludo-path-v { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(6, 1fr); background: #999; gap: 0.5px; }
-        .ludo-path-h { grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, 1fr); background: #999; gap: 0.5px; }
-        .path-cell { background: #fff; }
-        
-        .center-home {
-            width: 0; height: 0; 
-            border-left: 18px solid #00cc00;
-            border-right: 18px solid #0088ff;
-            border-top: 18px solid #ff0000;
-            border-bottom: 18px solid #ffcc00;
-            margin: auto;
-        }
-
-        .info-card {
-            background: linear-gradient(145deg, #0f172a, #020617);
-            border: 1.5px solid;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        .btn-pulse {
+            animation: pulse-glow 2s infinite;
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-between p-3">
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col justify-between selection:bg-green-500 selection:text-white">
 
-    <!-- Top Section: Title & Subtitle -->
-    <div class="w-full text-center flex flex-col items-center">
-        <div class="ludo-title mt-1">
-            <span class="ludo-letter letter-L">L</span>
-            <span class="ludo-letter letter-U">U</span>
-            <span class="ludo-letter letter-D">D</span>
-            <span class="ludo-letter letter-O">O</span>
+    <!-- Header / Navbar -->
+    <header class="w-full py-4 px-6 bg-gray-900/80 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-9 h-9 bg-green-500 rounded-xl flex items-center justify-center font-black text-xl text-gray-950 shadow-lg shadow-green-500/30">
+                    <i class="fa-solid fa-dice"></i>
+                </div>
+                <span class="text-xl font-black tracking-wider text-white">APNA <span class="text-green-500">LUDO</span></span>
+            </div>
+            <div class="flex items-center space-x-1 bg-green-500/10 border border-green-500/30 px-3 py-1 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                <span class="text-xs font-bold text-green-400">14,820+ Active Players</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container (Mobile Optimized Center Layout) -->
+    <main class="max-w-md mx-auto w-full px-6 py-8 flex-1 flex flex-col items-center justify-center text-center">
+        
+        <!-- Hero Badge -->
+        <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 px-4 py-1.5 rounded-full mb-6">
+            <i class="fa-solid fa-trophy text-yellow-400 text-sm"></i>
+            <span class="text-xs font-bold text-yellow-300 uppercase tracking-widest">India's #1 Skill Arena</span>
         </div>
 
-        <div class="ribbon px-6 py-0.5 mt-1 mb-1.5">
-            <h2 class="text-white text-xs font-bold tracking-widest" style="font-family: 'Montserrat', sans-serif;">
-                PLAY &bull; ENJOY &bull; WIN
-            </h2>
-        </div>
-
-        <p class="text-white font-semibold text-xs sm:text-sm">
-            Play Ludo Online & Win Real Rewards
+        <!-- Huge Brand Name -->
+        <h1 class="text-5xl md:text-6xl font-black tracking-tight text-white mb-3">
+            APNA <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 drop-shadow-[0_5px_15px_rgba(34,197,94,0.4)]">LUDO</span>
+        </h1>
+        
+        <p class="text-gray-400 text-sm md:text-base max-w-xs mb-8 leading-relaxed">
+            Apni ludo skills dikhao, daily live tournaments khelo aur instant rewards jeeto!
         </p>
-        <p class="text-yellow-400 font-bold text-xs">
-            Real Players. Real Fun. Real Cash.
+
+        <!-- Advanced UI Feature Cards -->
+        <div class="grid grid-cols-2 gap-3 w-full mb-10">
+            <div class="bg-gray-900/60 border border-gray-800 p-4 rounded-2xl text-left backdrop-blur-sm">
+                <div class="w-8 h-8 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center mb-2 font-bold text-sm">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="font-bold text-sm text-white">Instant Withdraw</h3>
+                <p class="text-[11px] text-gray-400 mt-0.5">Direct UPI Transfer</p>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 p-4 rounded-2xl text-left backdrop-blur-sm">
+                <div class="w-8 h-8 rounded-lg bg-yellow-500/20 text-yellow-400 flex items-center justify-center mb-2 font-bold text-sm">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-bold text-sm text-white">100% Safe</h3>
+                <p class="text-[11px] text-gray-400 mt-0.5">Secure Gameplay</p>
+            </div>
+        </div>
+
+        <!-- Huge Green Play Now Button (Directly links to apnaludo.in referral link) -->
+        <a href="https://apnaludo.in" target="_blank" class="w-full group relative inline-flex items-center justify-center px-8 py-4 text-lg font-black text-gray-950 bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 rounded-2xl shadow-xl shadow-green-500/30 hover:shadow-green-500/50 hover:scale-[1.02] active:scale-95 transition-all duration-200 btn-pulse">
+            <span class="flex items-center space-x-3">
+                <span>PLAY NOW</span>
+                <i class="fa-solid fa-arrow-right-long text-xl group-hover:translate-x-1 transition-transform"></i>
+            </span>
+        </a>
+
+        <p class="text-[11px] text-gray-500 mt-4 flex items-center justify-center space-x-1">
+            <i class="fa-solid fa-lock text-[10px]"></i>
+            <span>Secure 18+ Platform • Terms Apply</span>
         </p>
-    </div>
 
-    <!-- Middle Section: Timer & Ludo Board -->
-    <div class="flex flex-col items-center w-full my-1">
-        <!-- Timer -->
-        <div class="bg-red-600 border border-red-400 rounded-full px-4 py-1 mb-2 shadow-[0_0_10px_rgba(220,38,38,0.7)]">
-            <p class="text-white font-bold text-xs text-center flex items-center gap-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span id="timerText">Joining Closes In: <span id="timeDisplay">01:00</span></span>
-            </p>
-        </div>
+    </main>
 
-        <!-- Mini Board -->
-        <div class="ludo-board-css">
-            <div class="ludo-home ludo-red"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
-            <div class="ludo-path ludo-path-v">
-                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell ludo-blue"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-blue"></div><div class="path-cell"></div>
-            </div>
-            <div class="ludo-home ludo-blue"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
-            
-            <div class="ludo-path ludo-path-h">
-                <div class="path-cell"></div><div class="path-cell ludo-red"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div><div class="path-cell ludo-red"></div>
-                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
-            </div>
-            <div class="flex items-center justify-center bg-gray-200"><div class="center-home"></div></div>
-            <div class="ludo-path ludo-path-h">
-                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
-                <div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell ludo-yellow"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div><div class="path-cell ludo-yellow"></div><div class="path-cell"></div>
-            </div>
+    <!-- Footer -->
+    <footer class="w-full py-4 text-center border-t border-gray-900 text-xs text-gray-600">
+        &copy; 2026 APNA LUDO. All rights reserved.
+    </footer>
 
-            <div class="ludo-home ludo-green"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
-            <div class="ludo-path ludo-path-v">
-                <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
-                <div class="path-cell ludo-green"></div><div class="path-cell ludo-green"></div><div class="path-cell"></div>
-                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
-            </div>
-            <div class="ludo-home ludo-yellow"><div class="ludo-home-inner"><span></span><span></span><span></span><span></span></div></div>
-        </div>
-    </div>
-
-    <!-- Info Cards -->
-    <div class="grid grid-cols-3 gap-2 w-full max-w-sm px-1">
-        <div class="info-card border-green-600 rounded-lg p-1.5 text-center">
-            <span class="text-[9px] font-bold text-gray-300 block">MIN DEPOSIT</span>
-            <span class="text-sm font-bold text-green-400">₹100</span>
-        </div>
-        <div class="info-card border-blue-600 rounded-lg p-1.5 text-center">
-            <span class="text-[9px] font-bold text-gray-300 block">MIN WITHDRAW</span>
-            <span class="text-sm font-bold text-blue-300">₹100</span>
-        </div>
-        <div class="info-card border-yellow-600 rounded-lg p-1.5 text-center">
-            <span class="text-[9px] font-bold text-gray-300 block">MAX WITHDRAW</span>
-            <span class="text-sm font-bold text-yellow-400">₹50,000</span>
-        </div>
-    </div>
-
-    <!-- Bottom Section: Play Now Button & Footer -->
-    <div class="w-full max-w-sm flex flex-col items-center pb-1">
-        <!-- Play Now Button -->
-        <button onclick="startGame()" class="btn-play-now w-full rounded-2xl py-3 text-white text-3xl font-black cursor-pointer uppercase tracking-wider my-2" style="font-family: 'Montserrat', sans-serif;">
-            PLAY NOW
-        </button>
-
-        <!-- Features Bar -->
-        <div class="w-full bg-slate-900 border border-slate-700 rounded-lg p-1.5 flex justify-around items-center text-center">
-            <div class="text-[9px] font-bold text-white">🎮 PLAY ONLINE</div>
-            <div class="text-[9px] font-bold text-white">🔒 100% SAFE</div>
-            <div class="text-[9px] font-bold text-white">🏆 WIN BIG</div>
-        </div>
-
-        <!-- Footer Tag -->
-        <div class="text-[9px] text-yellow-500 font-bold mt-1 text-center">
-            FAIR PLAY &nbsp;|&nbsp; SAFE & SECURE &nbsp;|&nbsp; INSTANT WITHDRAWALS
-        </div>
-    </div>
-
-    <!-- Script -->
-    <script>
-        // 1 Minute Timer Logic
-        let timeLeft = 60;
-        const timeDisplay = document.getElementById('timeDisplay');
-        const timerText = document.getElementById('timerText');
-
-        const countdown = setInterval(() => {
-            timeLeft--;
-            let minutes = Math.floor(timeLeft / 60);
-            let seconds = timeLeft % 60;
-            timeDisplay.textContent = `0${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                timerText.innerHTML = "Join Now! Time's Up.";
-            }
-        }, 1000);
-
-        // Proper Redirection Function
-        function startGame() {
-            window.location.href = 'https://akadda.net/signup?refer=0rj82766';
-        }
-    </script>
 </body>
 </html>
