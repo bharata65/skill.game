@@ -3,90 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APNA LUDO - Daily Championship</title>
+    <title>APNA LUDO - Official Tournament Arena</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(34, 197, 94, 0.8); }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
-        .btn-pulse {
-            animation: pulse-glow 2s infinite;
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 45px rgba(34, 197, 94, 0.8); }
+        }
+        .floating-element { animation: float-slow 4s ease-in-out infinite; }
+        .btn-glow { animation: glow-pulse 2s infinite; }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col justify-between selection:bg-green-500 selection:text-white">
+<body class="bg-[#090D16] text-white font-sans min-h-screen flex flex-col justify-between selection:bg-green-500 selection:text-black">
 
-    <!-- Header / Navbar -->
-    <header class="w-full py-4 px-6 bg-gray-900/80 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+    <!-- Top Glow Background FX -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-green-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- Header -->
+    <header class="w-full py-4 px-6 bg-[#090D16]/80 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
         <div class="max-w-md mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-9 h-9 bg-green-500 rounded-xl flex items-center justify-center font-black text-xl text-gray-950 shadow-lg shadow-green-500/30">
-                    <i class="fa-solid fa-dice"></i>
+            <div class="flex items-center space-x-2.5">
+                <div class="w-10 h-10 bg-gradient-to-tr from-green-600 to-emerald-400 rounded-xl flex items-center justify-center text-black font-black text-xl shadow-lg shadow-green-500/20">
+                    <i class="fa-solid fa-dice-three"></i>
                 </div>
-                <span class="text-xl font-black tracking-wider text-white">APNA <span class="text-green-500">LUDO</span></span>
+                <span class="text-xl font-black tracking-wider text-white">APNA <span class="text-green-400">LUDO</span></span>
             </div>
-            <div class="flex items-center space-x-1 bg-green-500/10 border border-green-500/30 px-3 py-1 rounded-full">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
-                <span class="text-xs font-bold text-green-400">14,820+ Active Players</span>
+            <div class="flex items-center space-x-1.5 bg-green-500/10 border border-green-500/20 px-3.5 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+                <span class="text-xs font-bold text-green-300">Live Tournaments</span>
             </div>
         </div>
     </header>
 
-    <!-- Main Container (Mobile Optimized Center Layout) -->
-    <main class="max-w-md mx-auto w-full px-6 py-8 flex-1 flex flex-col items-center justify-center text-center">
+    <!-- Main Section -->
+    <main class="max-w-md mx-auto w-full px-6 py-6 flex-1 flex flex-col items-center justify-center text-center relative z-10">
         
-        <!-- Hero Badge -->
-        <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 px-4 py-1.5 rounded-full mb-6">
-            <i class="fa-solid fa-trophy text-yellow-400 text-sm"></i>
-            <span class="text-xs font-bold text-yellow-300 uppercase tracking-widest">India's #1 Skill Arena</span>
+        <!-- Badge -->
+        <div class="inline-flex items-center space-x-2 glass-card px-4 py-1.5 rounded-full mb-6">
+            <i class="fa-solid fa-fire text-orange-400 text-sm"></i>
+            <span class="text-xs font-bold text-gray-300 uppercase tracking-widest">India's Fastest Growing Arena</span>
         </div>
 
-        <!-- Huge Brand Name -->
-        <h1 class="text-5xl md:text-6xl font-black tracking-tight text-white mb-3">
-            APNA <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 drop-shadow-[0_5px_15px_rgba(34,197,94,0.4)]">LUDO</span>
-        </h1>
+        <!-- Huge 3D Styled Branding -->
+        <div class="relative mb-4 floating-element">
+            <h1 class="text-5xl md:text-6xl font-black tracking-tight text-white drop-shadow-md">
+                APNA <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-teal-300">LUDO</span>
+            </h1>
+        </div>
         
-        <p class="text-gray-400 text-sm md:text-base max-w-xs mb-8 leading-relaxed">
-            Apni ludo skills dikhao, daily live tournaments khelo aur instant rewards jeeto!
+        <p class="text-gray-400 text-sm md:text-base max-w-xs mb-8 leading-relaxed font-medium">
+            Apni ludo skills ka istemal karo, live matches khelo aur instant withdrawals pao!
         </p>
 
-        <!-- Advanced UI Feature Cards -->
-        <div class="grid grid-cols-2 gap-3 w-full mb-10">
-            <div class="bg-gray-900/60 border border-gray-800 p-4 rounded-2xl text-left backdrop-blur-sm">
-                <div class="w-8 h-8 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center mb-2 font-bold text-sm">
-                    <i class="fa-solid fa-bolt"></i>
+        <!-- Advanced Graphic Feature Matrix -->
+        <div class="grid grid-cols-2 gap-3.5 w-full mb-8">
+            <div class="glass-card p-4 rounded-2xl text-left transition hover:border-green-500/40">
+                <div class="w-9 h-9 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center mb-3 font-bold text-base border border-green-500/20">
+                    <i class="fa-solid fa-bolt-lightning"></i>
                 </div>
-                <h3 class="font-bold text-sm text-white">Instant Withdraw</h3>
-                <p class="text-[11px] text-gray-400 mt-0.5">Direct UPI Transfer</p>
+                <h3 class="font-bold text-sm text-white">Instant Payout</h3>
+                <p class="text-[11px] text-gray-400 mt-0.5 font-medium">Direct to UPI / Bank</p>
             </div>
-            <div class="bg-gray-900/60 border border-gray-800 p-4 rounded-2xl text-left backdrop-blur-sm">
-                <div class="w-8 h-8 rounded-lg bg-yellow-500/20 text-yellow-400 flex items-center justify-center mb-2 font-bold text-sm">
-                    <i class="fa-solid fa-shield-halved"></i>
+            <div class="glass-card p-4 rounded-2xl text-left transition hover:border-yellow-500/40">
+                <div class="w-9 h-9 rounded-xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center mb-3 font-bold text-base border border-yellow-500/20">
+                    <i class="fa-solid fa-shield-cat"></i>
                 </div>
-                <h3 class="font-bold text-sm text-white">100% Safe</h3>
-                <p class="text-[11px] text-gray-400 mt-0.5">Secure Gameplay</p>
+                <h3 class="font-bold text-sm text-white">100% Fair Play</h3>
+                <p class="text-[11px] text-gray-400 mt-0.5 font-medium">Anti-Fraud Engine</p>
             </div>
         </div>
 
-        <!-- Huge Green Play Now Button (Directly links to apnaludo.in referral link) -->
-        <a href="https://apnaludo.in" target="_blank" class="w-full group relative inline-flex items-center justify-center px-8 py-4 text-lg font-black text-gray-950 bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 rounded-2xl shadow-xl shadow-green-500/30 hover:shadow-green-500/50 hover:scale-[1.02] active:scale-95 transition-all duration-200 btn-pulse">
+        <!-- Huge Green PLAY NOW Button with Referral Link -->
+        <a href="https://apnaludo.in/referral/PD1116" target="_blank" class="w-full group relative inline-flex items-center justify-center px-8 py-4 text-lg font-black text-black bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 rounded-2xl shadow-xl shadow-green-500/25 hover:scale-[1.02] active:scale-95 transition-all duration-200 btn-glow">
             <span class="flex items-center space-x-3">
                 <span>PLAY NOW</span>
-                <i class="fa-solid fa-arrow-right-long text-xl group-hover:translate-x-1 transition-transform"></i>
+                <i class="fa-solid fa-arrow-right-long text-xl group-hover:translate-x-1.5 transition-transform"></i>
             </span>
         </a>
 
-        <p class="text-[11px] text-gray-500 mt-4 flex items-center justify-center space-x-1">
-            <i class="fa-solid fa-lock text-[10px]"></i>
-            <span>Secure 18+ Platform • Terms Apply</span>
-        </p>
+        <!-- Trust footer notes -->
+        <div class="mt-5 flex items-center justify-center space-x-4 text-gray-400 text-[11px] font-medium">
+            <span class="flex items-center space-x-1"><i class="fa-solid fa-lock text-green-400 text-[10px]"></i> <span>Secure SSL</span></span>
+            <span>•</span>
+            <span class="flex items-center space-x-1"><i class="fa-solid fa-user-check text-green-400 text-[10px]"></i> <span>18+ Only</span></span>
+        </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="w-full py-4 text-center border-t border-gray-900 text-xs text-gray-600">
+    <footer class="w-full py-4 text-center border-t border-white/5 text-xs text-gray-500">
         &copy; 2026 APNA LUDO. All rights reserved.
     </footer>
 
