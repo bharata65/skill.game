@@ -3,198 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APNA LUDO - Official Tournament Arena</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>APNA LUDO</title>
+
     <style>
-        @keyframes float-slow {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(1deg); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @keyframes glow-pulse {
-            0%, 100% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.4); }
-            50% { box-shadow: 0 0 45px rgba(34, 197, 94, 0.8); }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            background: #020617;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        .floating-element { animation: float-slow 4s ease-in-out infinite; }
-        .btn-glow { animation: glow-pulse 2s infinite; }
-        .glass-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .landing-page {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+
+            background-image:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.02) 50%,
+                    rgba(0, 0, 0, 0.35) 78%,
+                    rgba(0, 0, 0, 0.88) 100%
+                ),
+                url("images/dhoni.jpg");
+
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+
+            padding: 20px 18px 30px;
         }
-        .phone-mockup {
-            background: #111827;
-            border: 4px solid #374151;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+
+        .register-btn {
+            width: 100%;
+            max-width: 620px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 78px;
+            padding: 18px 25px;
+
+            border-radius: 18px;
+
+            text-decoration: none;
+
+            font-size: clamp(25px, 6vw, 48px);
+            font-weight: 900;
+            letter-spacing: 1px;
+
+            color: #06152d;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #fff36a 0%,
+                    #ffd51a 38%,
+                    #ffad00 100%
+                );
+
+            border: 3px solid #fff4a3;
+
+            box-shadow:
+                0 0 0 3px rgba(255, 174, 0, 0.35),
+                0 10px 35px rgba(255, 174, 0, 0.45),
+                inset 0 3px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -5px 0 rgba(180, 90, 0, 0.25);
+
+            text-shadow:
+                0 1px 0 rgba(255,255,255,0.5);
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+        }
+
+        .register-btn:hover {
+            transform: scale(1.025);
+
+            box-shadow:
+                0 0 0 3px rgba(255, 214, 30, 0.5),
+                0 15px 45px rgba(255, 174, 0, 0.65),
+                inset 0 3px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -5px 0 rgba(180, 90, 0, 0.25);
+        }
+
+        .register-btn:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 600px) {
+
+            .landing-page {
+                padding: 15px 12px 20px;
+
+                background-position:
+                    center top;
+            }
+
+            .register-btn {
+                min-height: 68px;
+                border-radius: 15px;
+                border-width: 2px;
+            }
         }
     </style>
 </head>
-<body class="bg-[#090D16] text-white font-sans min-h-screen flex flex-col justify-between selection:bg-green-500 selection:text-black">
 
-    <!-- Top Glow Background FX -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-green-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+<body>
 
-    <!-- Header -->
-    <header class="w-full py-4 px-6 bg-[#090D16]/80 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2.5">
-                <div class="w-10 h-10 bg-gradient-to-tr from-green-600 to-emerald-400 rounded-xl flex items-center justify-center text-black font-black text-xl shadow-lg shadow-green-500/20">
-                    <i class="fa-solid fa-dice-three"></i>
-                </div>
-                <span class="text-xl font-black tracking-wider text-white">APNA <span class="text-green-400">LUDO</span></span>
-            </div>
-            <div class="flex items-center space-x-1.5 bg-green-500/10 border border-green-500/20 px-3.5 py-1.5 rounded-full">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
-                <span class="text-xs font-bold text-green-300">Live Tournaments</span>
-            </div>
-        </div>
-    </header>
+    <main class="landing-page">
 
-    <!-- Main Section with Split Layout (Content + Phone Screen with Real Players) -->
-    <main class="max-w-4xl mx-auto w-full px-4 py-8 flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 relative z-10">
-        
-        <!-- Left Side: Main Branding & Register Button -->
-        <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <!-- Badge -->
-            <div class="inline-flex items-center space-x-2 glass-card px-4 py-1.5 rounded-full mb-5">
-                <i class="fa-solid fa-fire text-orange-400 text-sm"></i>
-                <span class="text-xs font-bold text-gray-300 uppercase tracking-widest">India's Fastest Growing Arena</span>
-            </div>
+        <!--
+            IMAGE PATH:
+            images/dhoni.jpg
 
-            <!-- Huge Branding -->
-            <div class="relative mb-4 floating-element">
-                <h1 class="text-4xl md:text-5xl font-black tracking-tight text-white drop-shadow-md">
-                    APNA <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-teal-300">LUDO</span>
-                </h1>
-            </div>
-            
-            <p class="text-gray-400 text-sm md:text-base max-w-sm mb-6 leading-relaxed font-medium">
-                Apni ludo skills ka istemal karo, live matches khelo aur instant withdrawals pao!
-            </p>
+            तुमचा Dhoni image या path वर ठेवा:
+            project/
+            ├── index.html
+            └── images/
+                └── dhoni.jpg
+        -->
 
-            <!-- Advanced Graphic Feature Matrix -->
-            <div class="grid grid-cols-2 gap-3 w-full mb-6">
-                <div class="glass-card p-3 rounded-xl text-left">
-                    <div class="w-8 h-8 rounded-lg bg-green-500/10 text-green-400 flex items-center justify-center mb-2 font-bold text-sm border border-green-500/20">
-                        <i class="fa-solid fa-bolt-lightning"></i>
-                    </div>
-                    <h3 class="font-bold text-xs text-white">Instant Payout</h3>
-                    <p class="text-[10px] text-gray-400">Direct UPI / Bank</p>
-                </div>
-                <div class="glass-card p-3 rounded-xl text-left">
-                    <div class="w-8 h-8 rounded-lg bg-yellow-500/10 text-yellow-400 flex items-center justify-center mb-2 font-bold text-sm border border-yellow-500/20">
-                        <i class="fa-solid fa-shield-cat"></i>
-                    </div>
-                    <h3 class="font-bold text-xs text-white">100% Fair Play</h3>
-                    <p class="text-[10px] text-gray-400">Anti-Fraud Engine</p>
-                </div>
-            </div>
-
-            <!-- Huge Green REGISTER NOW Button with Referral Link -->
-            <a href="https://apnaludo.in/referral/PD1116" target="_blank" class="w-full max-w-md group relative inline-flex items-center justify-center px-8 py-4 text-lg font-black text-black bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 rounded-2xl shadow-xl shadow-green-500/25 hover:scale-[1.02] active:scale-95 transition-all duration-200 btn-glow">
-                <span class="flex items-center space-x-3">
-                    <span>REGISTER NOW</span>
-                    <i class="fa-solid fa-arrow-right-long text-xl group-hover:translate-x-1.5 transition-transform"></i>
-                </span>
-            </a>
-
-            <!-- Trust footer notes -->
-            <div class="mt-4 flex items-center justify-center lg:justify-start space-x-4 text-gray-400 text-[11px] font-medium">
-                <span class="flex items-center space-x-1"><i class="fa-solid fa-lock text-green-400 text-[10px]"></i> <span>Secure SSL</span></span>
-                <span>•</span>
-                <span class="flex items-center space-x-1"><i class="fa-solid fa-user-check text-green-400 text-[10px]"></i> <span>18+ Only</span></span>
-            </div>
-        </div>
-
-        <!-- Right Side: Phone Screen Mockup showing Real Players (Ages 20, 25, 30, 35, 40, 45) & Hindi Text -->
-        <div class="w-full lg:w-1/2 flex flex-col items-center">
-            <div class="w-full max-w-[320px] phone-mockup rounded-[35px] p-4 relative overflow-hidden">
-                <!-- Phone Speaker Notch -->
-                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-4 bg-gray-900 rounded-full mb-2"></div>
-                
-                <!-- Hindi Statement Overlay -->
-                <div class="bg-green-500/15 border border-green-500/35 p-2.5 rounded-xl text-center mb-3 mt-3">
-                    <p class="text-xs font-black text-green-300 leading-snug">
-                        "हम <span class="text-white font-extrabold text-sm underline decoration-green-400">APNA LUDO</span> पर PLAY करते हैं"
-                    </p>
-                </div>
-
-                <!-- Phone Screen Header showing APNA LUDO -->
-                <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-black font-black text-center py-2 rounded-xl text-sm tracking-wide shadow-md mb-4 flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span>APNA LUDO LIVE</span>
-                </div>
-
-                <!-- 6 Real Players Grid (Ages 20, 25, 30, 35, 40, 45) -->
-                <div class="grid grid-cols-2 gap-2.5">
-                    <!-- Player 1 (Age 20) -->
-                    <div class="bg-gray-800/80 border border-gray-700/60 p-2 rounded-xl flex items-center space-x-2.5">
-                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150" alt="Player Age 20" class="w-10 h-10 rounded-full object-cover border border-green-400">
-                        <div class="text-left overflow-hidden">
-                            <p class="text-xs font-bold text-white truncate">Rohit (20)</p>
-                            <span class="text-[9px] text-green-400 font-medium flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1 animate-pulse"></span> Winning</span>
-                        </div>
-                    </div>
-
-                    <!-- Player 2 (Age 25) -->
-                    <div class="bg-gray-800/80 border border-gray-700/60 p-2 rounded-xl flex items-center space-x-2.5">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" alt="Player Age 25" class="w-10 h-10 rounded-full object-cover border border-green-400">
-                        <div class="text-left overflow-hidden">
-                            <p class="text-xs font-bold text-white truncate">Pooja (25)</p>
-                            <span class="text-[9px] text-green-400 font-medium flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1 animate-pulse"></span> Winning</span>
-                        </div>
-                    </div>
-
-                    <!-- Player 3 (Age 30) -->
-                    <div class="bg-gray-800/80 border border-gray-700/60 p-2 rounded-xl flex items-center space-x-2.5">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Player Age 30" class="w-10 h-10 rounded-full object-cover border border-green-400">
-                        <div class="text-left overflow-hidden">
-                            <p class="text-xs font-bold text-white truncate">Amit (30)</p>
-                            <span class="text-[9px] text-green-400 font-medium flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1 animate-pulse"></span> Winning</span>
-                        </div>
-                    </div>
-
-                    <!-- Player 4 (Age 35) -->
-                    <div class="bg-gray-800/80 border border-gray-700/60 p-2 rounded-xl flex items-center space-x-2.5">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150" alt="Player Age 35" class="w-10 h-10 rounded-full object-cover border border-green-400">
-                        <div class="text-left overflow-hidden">
-                            <p class="text-xs font-bold text-white truncate">Sunita (35)</p>
-                            <span class="text-[9px] text-green-400 font-medium flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1 animate-pulse"></span> Winning</span>
-                        </div>
-                    </div>
-
-                    <!-- Player 5 (Age 40) -->
-                    <div class="bg-gray-800/80 border border-gray-700/60 p-2 rounded-xl flex items-center space-x-2.5">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="Player Age 40" class="w-10 h-10 rounded-full object-cover border border-green-400">
-                        <div class="text-left overflow-hidden">
-                            <p class="text-xs font-bold text-white truncate">Rajesh (40)</p>
-                            <span class="text-[9px] text-green-400 font-medium flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1 animate-pulse"></span> Winning</span>
-                        </div>
-                    </div>
-
-                    <!-- Player 6 (Age 45) -->
-                    <div class="bg-gray-800/80 border border-gray-700/60 p-2 rounded-xl flex items-center space-x-2.5">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150" alt="Player Age 45" class="w-10 h-10 rounded-full object-cover border border-green-400">
-                        <div class="text-left overflow-hidden">
-                            <p class="text-xs font-bold text-white truncate">Kavita (45)</p>
-                            <span class="text-[9px] text-green-400 font-medium flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1 animate-pulse"></span> Winning</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phone Bottom Bar simulation -->
-                <div class="mt-4 pt-3 border-t border-gray-800 text-center">
-                    <span class="text-[10px] text-gray-400 font-medium">✨ Join 50,000+ Active Indian Players</span>
-                </div>
-            </div>
-        </div>
+        <a
+            class="register-btn"
+            href="https://apnaludo.in/referral/PD1116"
+        >
+            REGISTER NOW
+        </a>
 
     </main>
-
-    <!-- Footer -->
-    <footer class="w-full py-4 text-center border-t border-white/5 text-xs text-gray-500">
-        &copy; 2026 APNA LUDO. All rights reserved.
-    </footer>
 
 </body>
 </html>
