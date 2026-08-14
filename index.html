@@ -1,150 +1,1050 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>APNA LUDO</title>
+<title>APNA LUDO | Modern Ludo Experience</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta name="description"
+content="APNA LUDO - भारत में Ludo पसंद करने वालों के लिए एक आधुनिक और आसान mobile gaming experience.">
 
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
-            background: #020617;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        .landing-page {
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-            background-image:
-                linear-gradient(
-                    to bottom,
-                    rgba(0, 0, 0, 0.02) 50%,
-                    rgba(0, 0, 0, 0.35) 78%,
-                    rgba(0, 0, 0, 0.88) 100%
-                ),
-                url("images/dhoni.jpg");
+<style>
 
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-            padding: 20px 18px 30px;
-        }
+:root{
+    --cyan:#00eaff;
+    --blue:#387bff;
+    --purple:#754dff;
+    --dark:#050814;
+    --text:#ffffff;
+    --muted:#aab4ca;
+}
 
-        .register-btn {
-            width: 100%;
-            max-width: 620px;
+html{
+    scroll-behavior:smooth;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 15% 15%,rgba(0,234,255,.13),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(117,77,255,.16),transparent 30%),
+        linear-gradient(145deg,#030610,#080d1d 55%,#040711);
 
-            min-height: 78px;
-            padding: 18px 25px;
+    font-family:'Outfit',sans-serif;
+}
 
-            border-radius: 18px;
+/* BACKGROUND GLOW */
 
-            text-decoration: none;
+.bg-glow{
+    position:fixed;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.25;
+    pointer-events:none;
+    z-index:0;
+}
 
-            font-size: clamp(25px, 6vw, 48px);
-            font-weight: 900;
-            letter-spacing: 1px;
+.glow1{
+    background:#00cfff;
+    left:-220px;
+    top:25%;
+}
 
-            color: #06152d;
+.glow2{
+    background:#693dff;
+    right:-220px;
+    bottom:10%;
+}
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #fff36a 0%,
-                    #ffd51a 38%,
-                    #ffad00 100%
-                );
+/* HEADER */
 
-            border: 3px solid #fff4a3;
+header{
+    position:absolute;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:20;
 
-            box-shadow:
-                0 0 0 3px rgba(255, 174, 0, 0.35),
-                0 10px 35px rgba(255, 174, 0, 0.45),
-                inset 0 3px 0 rgba(255, 255, 255, 0.8),
-                inset 0 -5px 0 rgba(180, 90, 0, 0.25);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-            text-shadow:
-                0 1px 0 rgba(255,255,255,0.5);
+    padding:25px 6%;
+}
 
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
-        }
+.mini-logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:1px;
+}
 
-        .register-btn:hover {
-            transform: scale(1.025);
+.mini-logo span{
+    color:var(--cyan);
+}
 
-            box-shadow:
-                0 0 0 3px rgba(255, 214, 30, 0.5),
-                0 15px 45px rgba(255, 174, 0, 0.65),
-                inset 0 3px 0 rgba(255, 255, 255, 0.9),
-                inset 0 -5px 0 rgba(180, 90, 0, 0.25);
-        }
+.header-link{
+    color:#fff;
+    text-decoration:none;
 
-        .register-btn:active {
-            transform: scale(0.97);
-        }
+    padding:11px 21px;
+    border-radius:50px;
 
-        @media (max-width: 600px) {
+    font-size:13px;
+    font-weight:800;
 
-            .landing-page {
-                padding: 15px 12px 20px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.05);
 
-                background-position:
-                    center top;
-            }
+    backdrop-filter:blur(15px);
+}
 
-            .register-btn {
-                min-height: 68px;
-                border-radius: 15px;
-                border-width: 2px;
-            }
-        }
-    </style>
+/* HERO */
+
+.hero{
+    position:relative;
+    z-index:1;
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:110px 6% 70px;
+}
+
+.hero-inner{
+    width:100%;
+    max-width:1250px;
+
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+
+    align-items:center;
+    gap:60px;
+}
+
+/* LEFT CONTENT */
+
+.content{
+    position:relative;
+}
+
+.tag{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:9px 17px;
+    margin-bottom:22px;
+
+    border-radius:50px;
+
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.5px;
+
+    color:#9befff;
+
+    background:rgba(0,220,255,.07);
+    border:1px solid rgba(0,220,255,.25);
+}
+
+.tag-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+
+    background:var(--cyan);
+    box-shadow:0 0 15px var(--cyan);
+}
+
+/* BIG LOGO */
+
+.brand{
+    font-size:clamp(65px,9vw,125px);
+
+    line-height:.82;
+
+    font-weight:900;
+
+    letter-spacing:-6px;
+
+    margin-bottom:30px;
+
+    text-transform:uppercase;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 5%,
+            #dffbff 35%,
+            #00dcff 68%,
+            #347aff 100%
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    filter:
+        drop-shadow(0 15px 30px rgba(0,210,255,.18));
+}
+
+.brand .ludo{
+    display:block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00f1ff,
+            #4a8cff,
+            #8b63ff
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+/* HINDI */
+
+.hindi-title{
+    font-family:'Baloo 2',sans-serif;
+
+    font-size:clamp(28px,4vw,48px);
+
+    line-height:1.12;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+}
+
+.hindi-title span{
+    color:var(--cyan);
+}
+
+.description{
+    max-width:620px;
+
+    font-family:'Baloo 2',sans-serif;
+
+    font-size:20px;
+    line-height:1.55;
+
+    color:var(--muted);
+
+    margin-bottom:30px;
+}
+
+/* FEATURES */
+
+.quick-features{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+
+    margin-bottom:30px;
+}
+
+.feature-pill{
+    padding:9px 14px;
+
+    border-radius:30px;
+
+    font-family:'Baloo 2',sans-serif;
+
+    font-size:14px;
+    font-weight:700;
+
+    color:#d9e4f8;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+}
+
+/* CTA */
+
+.register{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:min(100%,470px);
+
+    min-height:78px;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    font-size:25px;
+    font-weight:900;
+
+    letter-spacing:.4px;
+
+    color:#03101a;
+
+    background:
+        linear-gradient(
+            100deg,
+            #00f0ff,
+            #36baff,
+            #6d7cff
+        );
+
+    box-shadow:
+        0 20px 60px rgba(0,207,255,.25),
+        0 5px 0 rgba(255,255,255,.15) inset;
+
+    overflow:hidden;
+
+    transition:.25s ease;
+}
+
+.register:before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:80%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            100deg,
+            transparent,
+            rgba(255,255,255,.55),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    animation:shine 3s infinite;
+}
+
+@keyframes shine{
+    0%{left:-120%}
+    45%,100%{left:140%}
+}
+
+.register:hover{
+    transform:translateY(-5px) scale(1.015);
+
+    box-shadow:
+        0 25px 70px rgba(0,207,255,.38);
+}
+
+.register-text{
+    position:relative;
+    z-index:2;
+}
+
+.arrow{
+    position:relative;
+    z-index:2;
+    margin-left:15px;
+    font-size:30px;
+}
+
+.note{
+    margin-top:12px;
+
+    font-size:11px;
+    color:#6e7b93;
+}
+
+/* PHONE VISUAL */
+
+.visual{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+}
+
+.phone{
+    width:315px;
+    height:620px;
+
+    padding:10px;
+
+    border-radius:48px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #50586b,
+            #101521 35%,
+            #02040a
+        );
+
+    border:1px solid rgba(255,255,255,.28);
+
+    box-shadow:
+        0 45px 100px rgba(0,0,0,.65),
+        0 0 80px rgba(0,211,255,.14);
+
+    transform:rotate(4deg);
+
+    position:relative;
+}
+
+.phone:after{
+    content:"";
+
+    position:absolute;
+
+    inset:2px;
+
+    border-radius:46px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    pointer-events:none;
+}
+
+.screen{
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    border-radius:39px;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(0,231,255,.22),
+            transparent 32%
+        ),
+        linear-gradient(
+            160deg,
+            #101b34,
+            #060a14
+        );
+}
+
+/* PHONE TOP */
+
+.phone-top{
+    height:70px;
+
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+
+    padding:0 22px 14px;
+
+    color:#8997ad;
+
+    font-size:10px;
+}
+
+.status{
+    color:#00e1ff;
+    font-weight:800;
+}
+
+/* APP */
+
+.app{
+    padding:10px 20px;
+}
+
+.app-title{
+    font-size:30px;
+    font-weight:900;
+
+    text-align:center;
+
+    letter-spacing:-1px;
+
+    margin-bottom:3px;
+}
+
+.app-title span{
+    color:#00e6ff;
+}
+
+.app-sub{
+    text-align:center;
+
+    color:#8290a7;
+
+    font-size:10px;
+
+    margin-bottom:20px;
+}
+
+/* LUDO BOARD */
+
+.board-wrap{
+    padding:15px;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.025)
+        );
+
+    border:1px solid rgba(255,255,255,.1);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.3);
+}
+
+.board{
+    width:100%;
+    aspect-ratio:1;
+
+    padding:12px;
+
+    border-radius:18px;
+
+    background:#f2f5ff;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:5px;
+
+    box-shadow:
+        inset 0 0 0 5px #d6deef;
+}
+
+.cell{
+    border-radius:8px;
+    background:#e7ebf5;
+}
+
+.c1{background:#ff4d65}
+.c2{background:#42d9ff}
+.c3{background:#ffd54a}
+.c4{background:#705cff}
+.c5{background:#ffffff}
+.c6{background:#42d9ff}
+.c7{background:#ffd54a}
+.c8{background:#705cff}
+.c9{background:#ff4d65}
+
+/* PHONE BOTTOM */
+
+.app-button{
+    margin-top:20px;
+
+    padding:15px;
+
+    text-align:center;
+
+    border-radius:14px;
+
+    font-size:13px;
+    font-weight:900;
+
+    color:#06111c;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00eaff,
+            #6680ff
+        );
+}
+
+/* FLOAT CARDS */
+
+.float-card{
+    position:absolute;
+
+    padding:14px 17px;
+
+    border-radius:17px;
+
+    background:
+        rgba(9,16,30,.82);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+
+    font-size:12px;
+    font-weight:800;
+
+    z-index:5;
+}
+
+.float1{
+    top:12%;
+    right:0;
+}
+
+.float2{
+    bottom:13%;
+    left:0;
+}
+
+.float-icon{
+    font-size:20px;
+    margin-right:6px;
+}
+
+/* LOWER SECTION */
+
+.info{
+    position:relative;
+    z-index:2;
+
+    padding:30px 6% 90px;
+}
+
+.info-inner{
+    max-width:1100px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+}
+
+.info-card{
+    padding:28px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.035);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.25s;
+}
+
+.info-card:hover{
+    transform:translateY(-5px);
+
+    border-color:rgba(0,220,255,.25);
+}
+
+.info-icon{
+    font-size:30px;
+
+    margin-bottom:13px;
+}
+
+.info-card h3{
+    font-family:'Baloo 2',sans-serif;
+
+    font-size:21px;
+
+    margin-bottom:5px;
+}
+
+.info-card p{
+    font-family:'Baloo 2',sans-serif;
+
+    color:#8592a9;
+
+    font-size:15px;
+
+    line-height:1.5;
+}
+
+/* FOOTER */
+
+footer{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+
+    padding:25px 5%;
+
+    border-top:1px solid rgba(255,255,255,.07);
+
+    color:#626e84;
+
+    font-size:11px;
+}
+
+footer strong{
+    color:#9aa6ba;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    header{
+        padding:20px;
+    }
+
+    .header-link{
+        display:none;
+    }
+
+    .hero{
+        padding:105px 20px 50px;
+    }
+
+    .hero-inner{
+        grid-template-columns:1fr;
+        gap:55px;
+        text-align:center;
+    }
+
+    .content{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .brand{
+        font-size:clamp(62px,18vw,100px);
+        letter-spacing:-4px;
+    }
+
+    .hindi-title{
+        font-size:31px;
+    }
+
+    .description{
+        font-size:18px;
+    }
+
+    .quick-features{
+        justify-content:center;
+    }
+
+    .register{
+        width:100%;
+        min-height:76px;
+        font-size:23px;
+    }
+
+    .visual{
+        transform:scale(.88);
+    }
+
+    .info{
+        padding:10px 20px 60px;
+    }
+
+    .info-inner{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:430px){
+
+    .brand{
+        font-size:70px;
+    }
+
+    .phone{
+        width:275px;
+        height:540px;
+    }
+
+    .float1{
+        right:-5px;
+    }
+
+    .float2{
+        left:-5px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <main class="landing-page">
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
 
-        <!--
-            IMAGE PATH:
-            images/dhoni.jpg
+<header>
 
-            तुमचा Dhoni image या path वर ठेवा:
-            project/
-            ├── index.html
-            └── images/
-                └── dhoni.jpg
-        -->
+    <div class="mini-logo">
+        APNA <span>LUDO</span>
+    </div>
+
+    <a
+        class="header-link"
+        href="https://apnaludo.in/referral/PD1116">
+        शुरू करें →
+    </a>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+    <!-- LEFT -->
+
+    <div class="content">
+
+        <div class="tag">
+            <span class="tag-dot"></span>
+            MODERN MOBILE LUDO EXPERIENCE
+        </div>
+
+        <div class="brand">
+            APNA
+            <span class="ludo">LUDO</span>
+        </div>
+
+        <h1 class="hindi-title">
+            भारत में <span>Ludo</span> पसंद करने वालों
+            के लिए एक शानदार अनुभव
+        </h1>
+
+        <p class="description">
+            क्लासिक Ludo गेमप्ले का मज़ेदार और आसान मोबाइल अनुभव।
+            साफ़ इंटरफेस, आसान नेविगेशन और मोबाइल के लिए बनाया गया
+            आधुनिक गेमिंग डिज़ाइन।
+        </p>
+
+        <div class="quick-features">
+
+            <div class="feature-pill">
+                🎮 आसान गेमप्ले
+            </div>
+
+            <div class="feature-pill">
+                📱 मोबाइल फ्रेंडली
+            </div>
+
+            <div class="feature-pill">
+                ⚡ आसान नेविगेशन
+            </div>
+
+        </div>
+
+        <!-- BIG REGISTER BUTTON -->
 
         <a
-            class="register-btn"
+            class="register"
             href="https://apnaludo.in/referral/PD1116"
-        >
-            REGISTER NOW
+            aria-label="Register Now">
+
+            <span class="register-text">
+                REGISTER NOW
+            </span>
+
+            <span class="arrow">
+                →
+            </span>
+
         </a>
 
-    </main>
+        <div class="note">
+            आगे बढ़ने के लिए ऊपर दिए गए बटन पर टैप करें
+        </div>
+
+    </div>
+
+
+    <!-- PHONE -->
+
+    <div class="visual">
+
+        <div class="float-card float1">
+            <span class="float-icon">🎮</span>
+            Smooth Experience
+        </div>
+
+        <div class="phone">
+
+            <div class="screen">
+
+                <div class="phone-top">
+
+                    <span>APNA LUDO</span>
+
+                    <span class="status">
+                        ● ONLINE
+                    </span>
+
+                </div>
+
+                <div class="app">
+
+                    <div class="app-title">
+                        APNA <span>LUDO</span>
+                    </div>
+
+                    <div class="app-sub">
+                        CLASSIC MOBILE EXPERIENCE
+                    </div>
+
+
+                    <div class="board-wrap">
+
+                        <div class="board">
+
+                            <div class="cell c1"></div>
+                            <div class="cell c2"></div>
+                            <div class="cell c3"></div>
+
+                            <div class="cell c4"></div>
+                            <div class="cell c5"></div>
+                            <div class="cell c6"></div>
+
+                            <div class="cell c7"></div>
+                            <div class="cell c8"></div>
+                            <div class="cell c9"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="app-button">
+                        PLAY EXPERIENCE
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="float-card float2">
+            <span class="float-icon">⚡</span>
+            Quick & Simple
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="info">
+
+<div class="info-inner">
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🎯
+        </div>
+
+        <h3>
+            आसान अनुभव
+        </h3>
+
+        <p>
+            सरल और साफ़ इंटरफेस के साथ मोबाइल पर
+            इस्तेमाल करना आसान बनाया गया है।
+        </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🎮
+        </div>
+
+        <h3>
+            Classic Ludo
+        </h3>
+
+        <p>
+            Ludo पसंद करने वाले खिलाड़ियों के लिए
+            familiar और engaging gameplay experience।
+        </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            📱
+        </div>
+
+        <h3>
+            Mobile Ready
+        </h3>
+
+        <p>
+            Smartphone screens के लिए responsive
+            और modern design experience।
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+    <strong>APNA LUDO</strong>
+    — Modern Mobile Gaming Experience
+
+</footer>
+
+
+<script>
+
+/*
+  REGISTER NOW + HEADER BUTTON
+  Direct referral navigation.
+*/
+
+const referralURL =
+"https://apnaludo.in/referral/PD1116";
+
+document.querySelectorAll(
+    'a[href*="apnaludo.in"]'
+).forEach(function(button){
+
+    button.addEventListener("click",function(){
+
+        window.location.assign(referralURL);
+
+    });
+
+});
+
+</script>
 
 </body>
-</html>
+        </html>
