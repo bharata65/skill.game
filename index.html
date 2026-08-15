@@ -1,1053 +1,247 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>APNA LUDO | Modern Ludo Gaming Experience</title>
-
-<meta name="description"
-content="APNA LUDO - भारत के खिलाड़ियों के लिए बनाया गया आधुनिक और आसान Ludo gaming experience.">
-
-<meta name="theme-color" content="#060816">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    min-height:100vh;
-    overflow-x:hidden;
-    color:#fff;
-    font-family:'Baloo 2',sans-serif;
-
-    background:
-    radial-gradient(circle at 10% 15%,rgba(0,210,255,.18),transparent 28%),
-    radial-gradient(circle at 90% 20%,rgba(125,55,255,.22),transparent 30%),
-    radial-gradient(circle at 50% 100%,rgba(255,90,40,.13),transparent 35%),
-    #050711;
-}
-
-/* BACKGROUND GLOW */
-
-.bg-glow{
-    position:fixed;
-    width:450px;
-    height:450px;
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:.20;
-    pointer-events:none;
-    z-index:-1;
-}
-
-.glow1{
-    background:#00d9ff;
-    top:-180px;
-    left:-160px;
-}
-
-.glow2{
-    background:#773cff;
-    right:-180px;
-    top:250px;
-}
-
-.glow3{
-    background:#ff5b22;
-    left:35%;
-    bottom:-250px;
-}
-
-
-/* HEADER */
-
-header{
-    width:100%;
-    position:absolute;
-    top:0;
-    left:0;
-    padding:20px 5%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:20;
-}
-
-.logo-small{
-    font-family:'Montserrat',sans-serif;
-    font-size:20px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.logo-small span{
-    color:#00e6ff;
-}
-
-.top-register{
-    text-decoration:none;
-    color:#fff;
-    font-family:'Montserrat',sans-serif;
-    font-size:12px;
-    font-weight:800;
-
-    padding:11px 20px;
-    border-radius:30px;
-
-    border:1px solid rgba(255,255,255,.22);
-    background:rgba(255,255,255,.06);
-
-    backdrop-filter:blur(15px);
-}
-
-
-/* HERO */
-
-.hero{
-    min-height:100vh;
-    padding:110px 5% 70px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.container{
-    width:100%;
-    max-width:1250px;
-
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    gap:50px;
-    align-items:center;
-}
-
-
-/* LEFT CONTENT */
-
-.hero-content{
-    position:relative;
-    z-index:3;
-}
-
-.eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    padding:7px 15px;
-    margin-bottom:18px;
-
-    border-radius:30px;
-
-    background:rgba(0,225,255,.08);
-    border:1px solid rgba(0,225,255,.25);
-
-    color:#78edff;
-
-    font-family:'Montserrat',sans-serif;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1px;
-}
-
-.live-dot{
-    width:7px;
-    height:7px;
-    background:#00eaff;
-    border-radius:50%;
-    box-shadow:0 0 15px #00eaff;
-}
-
-
-/* BIG APNA LUDO */
-
-.brand-title{
-    font-family:'Montserrat',sans-serif;
-
-    font-size:clamp(58px,8vw,105px);
-
-    line-height:.84;
-    letter-spacing:-5px;
-
-    font-weight:900;
-
-    margin-bottom:24px;
-
-    text-transform:uppercase;
-}
-
-.brand-title .apna{
-    display:block;
-    color:#fff;
-
-    text-shadow:
-        0 4px 0 rgba(0,0,0,.25),
-        0 0 45px rgba(255,255,255,.08);
-}
-
-.brand-title .ludo{
-    display:block;
-
-    background:
-    linear-gradient(
-        90deg,
-        #00eaff 0%,
-        #48d8ff 35%,
-        #9274ff 70%,
-        #ff61c7 100%
-    );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-
-    filter:drop-shadow(0 10px 25px rgba(0,190,255,.16));
-}
-
-
-/* HINDI HEADLINE */
-
-.hindi-title{
-    font-size:clamp(25px,3vw,39px);
-    line-height:1.2;
-    font-weight:800;
-
-    margin-bottom:12px;
-}
-
-.hindi-title span{
-    color:#00e3ff;
-}
-
-
-/* DESCRIPTION */
-
-.description{
-    max-width:620px;
-
-    color:#aeb8ca;
-    font-size:18px;
-    line-height:1.6;
-
-    margin-bottom:22px;
-}
-
-
-/* TRUST CARDS */
-
-.mini-points{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-
-    margin-bottom:25px;
-}
-
-.point{
-    padding:8px 13px;
-
-    border-radius:12px;
-
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.08);
-
-    color:#d9dfeb;
-
-    font-size:12px;
-    font-weight:600;
-}
-
-
-/* HUGE REGISTER BUTTON */
-
-.register-wrap{
-    margin-top:5px;
-}
-
-.register-btn{
-
-    width:min(100%,440px);
-
-    min-height:78px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-decoration:none;
-
-    border-radius:18px;
-
-    font-family:'Montserrat',sans-serif;
-
-    font-size:21px;
-    font-weight:900;
-    letter-spacing:.5px;
-
-    color:#04101a;
-
-    background:
-    linear-gradient(
-        135deg,
-        #00efff,
-        #38cfff 35%,
-        #6d7dff 75%,
-        #9a64ff
-    );
-
-    border:1px solid rgba(255,255,255,.5);
-
-    box-shadow:
-        0 15px 45px rgba(0,211,255,.22),
-        0 0 0 5px rgba(0,220,255,.035),
-        inset 0 2px 0 rgba(255,255,255,.75);
-
-    transition:.25s ease;
-
-    position:relative;
-    overflow:hidden;
-}
-
-.register-btn:before{
-    content:"";
-
-    position:absolute;
-    top:0;
-    left:-100%;
-
-    width:70%;
-    height:100%;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.5),
-        transparent
-    );
-
-    transform:skewX(-20deg);
-
-    animation:shine 3s infinite;
-}
-
-@keyframes shine{
-    0%{left:-100%}
-    45%,100%{left:140%}
-}
-
-.register-btn:hover{
-    transform:translateY(-5px) scale(1.015);
-
-    box-shadow:
-        0 20px 60px rgba(0,211,255,.32),
-        0 0 0 6px rgba(0,220,255,.05);
-}
-
-.register-btn span{
-    position:relative;
-    z-index:2;
-}
-
-.cta-sub{
-    margin-top:9px;
-
-    color:#66738a;
-
-    font-family:'Montserrat',sans-serif;
-    font-size:10px;
-}
-
-
-/* RIGHT VISUAL */
-
-.visual{
-    min-height:580px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    position:relative;
-}
-
-
-/* BIG CIRCLE */
-
-.circle{
-    position:absolute;
-
-    width:450px;
-    height:450px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        circle,
-        rgba(0,229,255,.17),
-        rgba(93,61,255,.08) 48%,
-        transparent 70%
-    );
-
-    border:1px solid rgba(255,255,255,.06);
-
-    box-shadow:
-        0 0 100px rgba(0,180,255,.10);
-}
-
-
-/* PHONE */
-
-.phone{
-    width:295px;
-    height:590px;
-
-    padding:10px;
-
-    border-radius:43px;
-
-    background:
-    linear-gradient(145deg,#4d566b,#080b12 40%,#272e3e);
-
-    border:1px solid rgba(255,255,255,.3);
-
-    box-shadow:
-        0 40px 90px rgba(0,0,0,.65),
-        0 0 70px rgba(0,191,255,.15);
-
-    transform:rotate(4deg);
-
-    position:relative;
-    z-index:5;
-}
-
-.screen{
-    width:100%;
-    height:100%;
-
-    border-radius:34px;
-
-    overflow:hidden;
-
-    background:
-    radial-gradient(
-        circle at 50% 15%,
-        rgba(0,220,255,.25),
-        transparent 27%
-    ),
-    linear-gradient(160deg,#111d35,#080b15 70%);
-}
-
-.notch{
-    width:90px;
-    height:24px;
-
-    margin:0 auto;
-
-    background:#05070c;
-
-    border-radius:0 0 17px 17px;
-}
-
-.phone-content{
-    padding:15px 18px;
-    text-align:center;
-}
-
-.phone-brand{
-    margin-top:15px;
-
-    font-family:'Montserrat',sans-serif;
-
-    font-size:25px;
-    font-weight:900;
-}
-
-.phone-brand span{
-    color:#00e5ff;
-}
-
-.phone-caption{
-    color:#77859d;
-    font-size:11px;
-}
-
-
-/* LUDO BOARD */
-
-.board{
-    width:200px;
-    height:200px;
-
-    margin:28px auto;
-
-    padding:12px;
-
-    border-radius:22px;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:5px;
-
-    background:
-    linear-gradient(145deg,#e9f9ff,#9fbaff);
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.4);
-}
-
-.cell{
-    border-radius:8px;
-    background:#f7fbff;
-}
-
-.cell:nth-child(2),
-.cell:nth-child(8){
-    background:#656eff;
-}
-
-.cell:nth-child(4),
-.cell:nth-child(6){
-    background:#10cce2;
-}
-
-.cell:nth-child(1),
-.cell:nth-child(9){
-    background:#ffd044;
-}
-
-.cell:nth-child(5){
-    background:#ff637e;
-}
-
-
-/* PHONE CTA */
-
-.phone-cta{
-    margin:10px 18px;
-
-    padding:15px;
-
-    border-radius:14px;
-
-    background:
-    linear-gradient(90deg,#00e5ff,#667cff);
-
-    color:#04101a;
-
-    font-family:'Montserrat',sans-serif;
-    font-size:12px;
-    font-weight:900;
-}
-
-
-/* FLOATING CARDS */
-
-.float-card{
-    position:absolute;
-
-    padding:13px 17px;
-
-    border-radius:16px;
-
-    background:rgba(10,17,31,.82);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    backdrop-filter:blur(15px);
-
-    box-shadow:0 18px 45px rgba(0,0,0,.35);
-
-    font-family:'Montserrat',sans-serif;
-    font-size:11px;
-    font-weight:800;
-
-    z-index:10;
-}
-
-.float-card.one{
-    top:12%;
-    right:0;
-}
-
-.float-card.two{
-    bottom:14%;
-    left:0;
-}
-
-.float-icon{
-    font-size:20px;
-    margin-right:5px;
-}
-
-
-/* FEATURES */
-
-.features{
-    padding:0 5% 80px;
-}
-
-.feature-grid{
-    width:100%;
-    max-width:1150px;
-
-    margin:auto;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-
-    gap:18px;
-}
-
-.feature{
-    padding:27px;
-
-    border-radius:22px;
-
-    background:rgba(255,255,255,.035);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    transition:.25s;
-}
-
-.feature:hover{
-    transform:translateY(-6px);
-
-    border-color:rgba(0,220,255,.25);
-}
-
-.feature-icon{
-    font-size:28px;
-    margin-bottom:10px;
-}
-
-.feature h3{
-    font-size:20px;
-    margin-bottom:5px;
-}
-
-.feature p{
-    color:#8591a6;
-    font-size:14px;
-    line-height:1.6;
-}
-
-
-/* FOOTER */
-
-footer{
-    padding:30px 5%;
-
-    border-top:1px solid rgba(255,255,255,.07);
-
-    text-align:center;
-
-    color:#566176;
-
-    font-family:'Montserrat',sans-serif;
-    font-size:10px;
-}
-
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-    header{
-        padding:17px 5%;
-    }
-
-    .hero{
-        padding:105px 20px 50px;
-    }
-
-    .container{
-        grid-template-columns:1fr;
-        gap:30px;
-        text-align:center;
-    }
-
-    .brand-title{
-        font-size:65px;
-        letter-spacing:-3px;
-    }
-
-    .description{
-        margin-left:auto;
-        margin-right:auto;
-        font-size:16px;
-    }
-
-    .mini-points{
-        justify-content:center;
-    }
-
-    .register-btn{
-        width:100%;
-        max-width:430px;
-        margin:auto;
-        min-height:82px;
-        font-size:20px;
-    }
-
-    .visual{
-        min-height:550px;
-    }
-
-    .circle{
-        width:370px;
-        height:370px;
-    }
-
-    .phone{
-        width:265px;
-        height:530px;
-    }
-
-    .board{
-        width:175px;
-        height:175px;
-    }
-
-    .float-card.one{
-        right:-3px;
-    }
-
-    .float-card.two{
-        left:-3px;
-    }
-
-    .feature-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-
-@media(max-width:450px){
-
-    .brand-title{
-        font-size:56px;
-    }
-
-    .hindi-title{
-        font-size:25px;
-    }
-
-    .description{
-        font-size:15px;
-    }
-
-    .register-btn{
-        min-height:76px;
-        font-size:18px;
-        border-radius:16px;
-    }
-
-    .visual{
-        min-height:500px;
-    }
-
-    .circle{
-        width:320px;
-        height:320px;
-    }
-
-    .phone{
-        width:235px;
-        height:470px;
-        border-radius:35px;
-    }
-
-    .screen{
-        border-radius:27px;
-    }
-
-    .board{
-        width:150px;
-        height:150px;
-        margin:20px auto;
-    }
-
-    .float-card{
-        font-size:9px;
-        padding:10px 12px;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APNA LUDO | Modern Ludo Gaming Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *{ margin:0; padding:0; box-sizing:border-box; } 
+        html{ scroll-behavior:smooth; } 
+        body{ 
+            min-height:100vh; 
+            overflow-x:hidden; 
+            color:#fff; 
+            font-family:'Baloo 2',sans-serif; 
+            background: radial-gradient(circle at 10% 15%,rgba(0,210,255,.18),transparent 28%), radial-gradient(circle at 90% 20%,rgba(125,55,255,.22),transparent 30%), radial-gradient(circle at 50% 100%,rgba(255,90,40,.13),transparent 35%), #050711; 
+        } 
+        /* BACKGROUND GLOW */ 
+        .bg-glow{ 
+            position:fixed; 
+            width:450px; 
+            height:450px; 
+            border-radius:50%; 
+            filter:blur(100px); 
+            opacity:.20; 
+            pointer-events:none; 
+            z-index:-1; 
+        } 
+        .glow1{ background:#00d9ff; top:-180px; left:-160px; } 
+        .glow2{ background:#773cff; right:-180px; top:250px; } 
+        .glow3{ background:#ff5b22; left:35%; bottom:-250px; } 
+
+        /* HEADER */ 
+        header{ 
+            width:100%; 
+            position:absolute; 
+            top:0; 
+            left:0; 
+            padding:20px 5%; 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            z-index:20; 
+        } 
+        .logo-small{ 
+            font-family:'Montserrat',sans-serif; 
+            font-size:20px; 
+            font-weight:900; 
+            letter-spacing:1px; 
+        } 
+        .logo-small span{ color:#00e6ff; } 
+        .top-register{ 
+            text-decoration:none; 
+            color:#fff; 
+            font-family:'Montserrat',sans-serif; 
+            font-size:12px; 
+            font-weight:800; 
+            padding:11px 20px; 
+            border-radius:30px; 
+            border:1px solid rgba(255,255,255,.22); 
+            background:rgba(255,255,255,.06); 
+            transition: all 0.3s ease;
+        }
+        .top-register:hover {
+            background: rgba(0, 230, 255, 0.2);
+            border-color: #00e6ff;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 5% 60px 5%;
+        }
+
+        .tagline-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #00e6ff;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 30%, #00e6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero h2 span {
+            color: #00e6ff;
+        }
+
+        .hero p {
+            font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 600px;
+            margin-bottom: 35px;
+        }
+
+        /* BADGES / FEATURES */
+        .features-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .feature-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* BIG REGISTER BUTTON */
+        .btn-register-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #050711;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            padding: 18px 45px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #00d9ff 0%, #773cff 100%);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .btn-register-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(119, 60, 255, 0.6);
+        }
+
+        .hint-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 50px;
+        }
+
+        /* UPLOADED LOGO WRAPPER */
+        .uploaded-logo-wrapper {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .uploaded-logo-img {
+            width: min(260px, 75vw);
+            height: min(260px, 75vw);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #00e6ff;
+            box-shadow: 0 0 50px rgba(0, 230, 255, 0.45), inset 0 0 20px rgba(119, 60, 255, 0.4);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 230, 255, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(119, 60, 255, 0.7); }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="bg-glow glow1"></div>
-<div class="bg-glow glow2"></div>
-<div class="bg-glow glow3"></div>
+    <!-- Background Glows -->
+    <div class="bg-glow glow1"></div>
+    <div class="bg-glow glow2"></div>
+    <div class="bg-glow glow3"></div>
 
+    <!-- Header -->
+    <header>
+        <div class="logo-small">APNA <span>LUDO</span></div>
+        <a href="https://apnaludo.in/referral/PD1116" class="top-register">REGISTER NOW →</a>
+    </header>
 
-<header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="tagline-pill">⚡ MODERN MOBILE GAMING EXPERIENCE</div>
+        
+        <h1>APNA LUDO</h1>
+        
+        <h2>भारत के खिलाड़ियों के लिए <span>एक नया Ludo अनुभव</span></h2>
+        
+        <p>अपने दोस्तों और परिवार के साथ एक आसान, मजेदार और आधुनिक mobile gaming experience का आनंद लें।</p>
+        
+        <div class="features-row">
+            <div class="feature-badge">🎮 आसान गेमप्ले</div>
+            <div class="feature-badge">📱 Mobile Friendly</div>
+            <div class="feature-badge">⚡ Smooth Experience</div>
+        </div>
 
-    <div class="logo-small">
-        APNA <span>LUDO</span>
-    </div>
-
-    <a
-      class="top-register"
-      href="https://apnaludo.in/referral/PD1116">
-      REGISTER NOW →
-    </a>
-
-</header>
-
-
-<main>
-
-<section class="hero">
-
-<div class="container">
-
-
-<!-- LEFT -->
-
-<div class="hero-content">
-
-    <div class="eyebrow">
-        <span class="live-dot"></span>
-        MODERN MOBILE GAMING EXPERIENCE
-    </div>
-
-
-    <div class="brand-title">
-
-        <span class="apna">APNA</span>
-
-        <span class="ludo">LUDO</span>
-
-    </div>
-
-
-    <h1 class="hindi-title">
-        भारत के खिलाड़ियों के लिए
-        <span>एक नया Ludo अनुभव</span>
-    </h1>
-
-
-    <p class="description">
-
-        अपने दोस्तों और परिवार के साथ
-        एक आसान, मजेदार और आधुनिक
-        mobile gaming experience का आनंद लें।
-
-    </p>
-
-
-    <div class="mini-points">
-
-        <div class="point">🎮 आसान गेमप्ले</div>
-
-        <div class="point">📱 Mobile Friendly</div>
-
-        <div class="point">⚡ Smooth Experience</div>
-
-    </div>
-
-
-    <!-- BIG REGISTER BUTTON -->
-
-    <div class="register-wrap">
-
-        <a
-          class="register-btn"
-          href="https://apnaludo.in/referral/PD1116"
-          aria-label="Register Now">
-
-          <span>
-            REGISTER NOW &nbsp; →
-          </span>
-
+        <!-- Call to Action Button -->
+        <a href="https://apnaludo.in/referral/PD1116" class="btn-register-main">
+            REGISTER NOW →
         </a>
 
-        <div class="cta-sub">
-            आगे बढ़ने के लिए ऊपर दिए गए बटन पर टैप करें
+        <div class="hint-text">आगे बढ़ने के लिए ऊपर दिए गए बटन पर टैप करें</div>
+
+        <!-- UPLOADED LOGO WITH EXACT FILENAME -->
+        <div class="uploaded-logo-wrapper">
+            <img src="1000558060.webp" alt="Apna Ludo Character Logo" class="uploaded-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'250\' height=\'250\'><circle cx=\'125\' cy=\'125\' r=\'120\' fill=\'%23050711\' stroke=\'%2300e6ff\' stroke-width=\'6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'22\' font-family=\'Montserrat,sans-serif\' font-weight=\'900\'>APNA LUDO</text></svg>';">
         </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- RIGHT -->
-
-<div class="visual">
-
-    <div class="circle"></div>
-
-
-    <div class="float-card one">
-        <span class="float-icon">🎮</span>
-        SMOOTH GAMEPLAY
-    </div>
-
-
-    <div class="phone">
-
-        <div class="screen">
-
-            <div class="notch"></div>
-
-            <div class="phone-content">
-
-                <div class="phone-brand">
-                    APNA <span>LUDO</span>
-                </div>
-
-                <div class="phone-caption">
-                    MODERN MOBILE GAMING
-                </div>
-
-
-                <div class="board">
-
-                    <div class="cell"></div>
-                    <div class="cell"></div>
-                    <div class="cell"></div>
-
-                    <div class="cell"></div>
-                    <div class="cell"></div>
-                    <div class="cell"></div>
-
-                    <div class="cell"></div>
-                    <div class="cell"></div>
-                    <div class="cell"></div>
-
-                </div>
-
-
-                <div class="phone-cta">
-                    START YOUR EXPERIENCE
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="float-card two">
-        <span class="float-icon">📱</span>
-        MOBILE READY
-    </div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section class="features">
-
-<div class="feature-grid">
-
-    <div class="feature">
-
-        <div class="feature-icon">🎮</div>
-
-        <h3>आसान गेमप्ले</h3>
-
-        <p>
-            साफ और सरल interface के साथ
-            एक comfortable mobile gaming experience.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <div class="feature-icon">⚡</div>
-
-        <h3>Smooth Experience</h3>
-
-        <p>
-            मोबाइल स्क्रीन के लिए optimized
-            modern और responsive interface.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <div class="feature-icon">👥</div>
-
-        <h3>Friends & Family</h3>
-
-        <p>
-            अपने जानने वालों के साथ
-            Ludo gaming experience enjoy करें.
-        </p>
-
-    </div>
-
-</div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-    © 2026 <strong>APNA LUDO</strong> · Mobile Gaming Experience
-
-</footer>
-
-
-<script>
-
-/*
-   DIRECT REGISTRATION REDIRECT
-
-   REGISTER NOW वर click केल्यावर
-   कोणतीही intermediate page न ठेवता
-   थेट referral URL open होईल.
-*/
-
-const REGISTER_URL =
-"https://apnaludo.in/referral/PD1116";
-
-document.querySelectorAll(
-    'a[href*="apnaludo.in/referral"]'
-).forEach(function(button){
-
-    button.addEventListener("click",function(){
-
-        window.location.href = REGISTER_URL;
-
-    });
-
-});
-
-</script>
+    </section>
 
 </body>
 </html>
+
